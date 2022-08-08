@@ -1,4 +1,8 @@
-# Nuxt 3 Minimal Starter
+# Juniper & Elm Quilts
+
+This is a rebuild of the current SquareSpace site using Storyblok.
+
+## Nuxt Information
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
