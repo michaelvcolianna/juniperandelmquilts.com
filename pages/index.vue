@@ -1,7 +1,5 @@
 <script setup>
-const { slug } = useRoute().params
-
-const story = await useAsyncStoryblok(`blog/${slug}`, { version: 'draft' })
+const story = await useAsyncStoryblok('home', { version: 'draft' })
 </script>
 
 <template>
