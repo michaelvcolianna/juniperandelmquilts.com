@@ -4,10 +4,10 @@ const storyVersion = process.env.NODE_ENV === 'development'
   : 'published'
 
 const { slug } = useRoute().params
-const storyPath = `blog/${slug}`
+const storyPath = `products/${slug}`
 
 const story = await useAsyncStoryblok(storyPath, { version: storyVersion })
-  .then((response) => response)
+.then((response) => response)
   .catch((error) => {
     throw createError({
       statusCode: 404,

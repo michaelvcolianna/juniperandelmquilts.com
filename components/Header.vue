@@ -1,5 +1,23 @@
+<script setup>
+//
+</script>
+
 <template>
   <header>
-    <strong>juniper &amp; elm quilts</strong>
+    <NuxtLink to="/">
+      <NuxtImg
+        src="/f/159199/600x160/0339cab1cb/jne-black.png"
+        alt="Juniper &amp; Elm Quilts"
+        sizes="md:169px lg:338px"
+      />
+    </NuxtLink>
+
+    <div>
+      <button>Eventual Menu Button</button>
+
+      <Navigation />
+
+      <SocialMedia />
+    </div>
   </header>
 </template>
