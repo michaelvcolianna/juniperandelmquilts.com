@@ -4,14 +4,50 @@
 
 <template>
   <footer>
-    <div>Juniper &amp; Elm Quilts</div>
+    <section style="--grid-area: general;">
+      <h4>Juniper &amp; Elm Quilts</h4>
 
-    <SocialMedia />
+      <p>Powered by <ExternalLink href="https://www.storyblok.com/">Storyblok</ExternalLink> and <ExternalLink href="https://nuxt.com/">Nuxt</ExternalLink>.</p>
 
-    <Navigation />
+      <SocialMedia />
+    </section>
 
-    <div>
-      &copy; 2019-{{ new Date().getFullYear() }} All rights reserved.
-    </div>
+    <section style="--grid-area: navigation;">
+      <Navigation />
+    </section>
+
+    <section class="accent" style="--grid-area: copyright;">
+      &copy; 2019-{{ new Date().getFullYear() }}.
+      All rights reserved.
+      Site by <ExternalLink href="https://github.com/michaelvcolianna">MVC</ExternalLink>.
+    </section>
   </footer>
 </template>
+
+<style scoped lang="scss">
+footer {
+  color: var(--color-white);
+  display: grid;
+  gap: 2.5rem;
+  grid-template-areas:
+    "general"
+    "navigation"
+    "copyright";
+  padding: 32px 24px;
+
+  @include bp(768px) {
+    grid-template-areas:
+      "general navigation"
+      "copyright .";
+  }
+}
+
+section {
+  grid-area: var(--grid-area);
+
+  &:first-child {
+    display: grid;
+    gap: 2.5rem;
+  }
+}
+</style>

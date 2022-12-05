@@ -1,0 +1,8 @@
+@mixin bp($measure, $reverse: false) {
+  $test: if($reverse, 'max-width', 'min-width');
+  $value: if($reverse, ($measure - 1px), $measure);
+
+  @media (#{$test}: $value) {
+    @content;
+  }
+}

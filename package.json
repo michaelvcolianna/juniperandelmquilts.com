@@ -12,6 +12,7 @@
     "nuxt": "3.0.0"
   },
   "dependencies": {
-    "@storyblok/nuxt": "^4.6.0"
+    "@storyblok/nuxt": "^4.6.0",
+    "sass": "^1.56.1"
   }
 }

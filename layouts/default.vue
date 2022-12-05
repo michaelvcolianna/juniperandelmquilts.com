@@ -21,6 +21,7 @@ function skipNav(event) {
     <div hidden>
       <span id="label-external">Opens an external link in a new window</span>
       <span id="label-phone">Initiates a phone call (if available)</span>
+      <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
     </div>
   </div>
 </template>

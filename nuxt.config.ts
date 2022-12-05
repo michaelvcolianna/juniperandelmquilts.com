@@ -1,6 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  'modules': [
+  app: {
+    head: {
+      link: [
+        { rel: 'preconnect', href: 'https://fonts.bunny.net' },
+        { rel: 'stylesheet', href: 'https://fonts.bunny.net/css?family=crimson-text:400,400i,700,700i|antic-didone:400' }
+      ]
+    }
+  },
+  css: [
+    '@/assets/css/main.scss'
+  ],
+  modules: [
     [
       '@storyblok/nuxt',
       {
@@ -18,5 +29,14 @@ export default defineNuxtConfig({
         }
       }
     ]
-  ]
+  ],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import "@/assets/css/_mixins.scss";`
+        }
+      }
+    }
+  }
 })

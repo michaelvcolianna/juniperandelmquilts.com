@@ -1,0 +1,78 @@
+:root {
+  --color-black: #000;
+  --color-grey-dark: #38383b;
+  --color-grey-medium: #a8a6a1;
+  --color-grey-light: #dfe0e1;
+  --color-white: #fff;
+  --font-family-copy: 'Crimson Text', serif;
+  --font-family-heading: 'Antic Didone', serif;
+  --font-size-accent: 13px;
+  --font-size-copy: 18px;
+  --font-size-h1: 45px;
+  --font-size-h2: 34px;
+  --font-size-h3: 37px;
+  --font-size-h4: 28px;
+
+  @include bp(768px) {
+    --font-size-accent: 13px;
+    --font-size-copy: 18px;
+    --font-size-h1: 45px;
+    --font-size-h2: 34px;
+    --font-size-h3: 37px;
+    --font-size-h4: 28px;
+  }
+
+  @include bp(1295px) {
+    --font-size-accent: 13px;
+    --font-size-copy: 18px;
+    --font-size-h1: 45px;
+    --font-size-h2: 34px;
+    --font-size-h3: 37px;
+    --font-size-h4: 28px;
+  }
+}
+
+body {
+  background-color: var(--color-grey-dark);
+  font-family: var(--font-family-copy);
+  font-size: var(--font-size-copy);
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  font-weight: 400;
+}
+
+@each $heading in (h1, h2, h3, h4, h5, h6) {
+  #{$heading} {
+    font-size: var(--font-size-#{$heading});
+  }
+}
+
+a {
+  &:active,
+  &:link,
+  &:visited {
+    color: var(--color-grey-medium);
+  }
+}
+
+.sr-only {
+  border-width: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.accent {
+  font-size: var(--font-size-accent);
+}

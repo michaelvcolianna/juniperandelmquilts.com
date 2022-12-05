@@ -10,3 +10,10 @@ const showDrafts = computed(() => process.env.NODE_ENV === 'development')
     <NuxtLink to="/contact">Contact</NuxtLink>
   </nav>
 </template>
+
+<style scoped lang="scss">
+nav {
+  display: grid;
+  gap: 0.5rem;
+}
+</style>
