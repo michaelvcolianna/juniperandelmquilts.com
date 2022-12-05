@@ -28,6 +28,15 @@ export default defineNuxtConfig({
           baseURL: 'https://a.storyblok.com'
         }
       }
+    ],
+    [
+      '@nuxtjs/robots',
+      {
+        rules: {
+          UserAgent: '*',
+          Disallow: '/'
+        }
+      }
     ]
   ],
   vite: {
