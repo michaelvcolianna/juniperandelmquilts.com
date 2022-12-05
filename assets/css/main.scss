@@ -12,6 +12,19 @@
   --font-size-h2: 34px;
   --font-size-h3: 37px;
   --font-size-h4: 28px;
+  --header-background: var(--color-white);
+  --header-foreground: var(--color-black);
+  --header-height: 90px;
+  --line-position: 36%;
+  --line-sides: 12%;
+  --line-tx: rotate(0);
+  --line-tx-bottom: var(--line-tx);
+  --line-tx-top: var(--line-tx);
+  --line-width: 2px;
+  --menu-layer: -1;
+  --menu-opacity: 0;
+  --tx-duration: 195ms;
+  --tx-easing: ease-in-out;
 
   @include bp(768px) {
     --font-size-accent: 13px;
@@ -20,6 +33,11 @@
     --font-size-h2: 34px;
     --font-size-h3: 37px;
     --font-size-h4: 28px;
+    --header-height: 182px;
+  }
+
+  @include bp(1024px) {
+    --header-height: 124px;
   }
 
   @include bp(1295px) {
@@ -30,12 +48,28 @@
     --font-size-h3: 37px;
     --font-size-h4: 28px;
   }
+
+  &.menu-open {
+    --header-background: var(--color-grey-dark);
+    --header-foreground: var(--color-white);
+    --line-position: calc(50% - 1px);
+    --line-sides: 20%;
+    --line-tx-bottom: rotate(45deg);
+    --line-tx-top: rotate(-45deg);
+    --line-width: 1px;
+    --menu-layer: 1;
+    --menu-opacity: 1;
+
+    height: 100%;
+    overflow: hidden;
+  }
 }
 
 body {
   background-color: var(--color-grey-dark);
   font-family: var(--font-family-copy);
   font-size: var(--font-size-copy);
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6, p {

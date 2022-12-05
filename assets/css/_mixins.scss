@@ -6,3 +6,9 @@
     @content;
   }
 }
+
+@mixin motion {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}

@@ -26,7 +26,20 @@ function skipNav(event) {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+a[href="#content"] {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  position: fixed;
+  top: -999rem;
+
+  &:focus {
+    top: 1rem;
+  }
+}
+
 main {
   max-width: 100vw;
   overflow: hidden;
