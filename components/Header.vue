@@ -7,9 +7,13 @@ const vClickOutside = {
       let menuToggle = document.querySelector('#menu-toggle')
 
       if(
-        !(el === event.target || el.contains(event.target))
-        &&
-        !(menuToggle === event.target || menuToggle.contains(event.target))
+        event.target.tagName.toLowerCase() === 'a'
+        ||
+        (
+          !(el === event.target || el.contains(event.target))
+          &&
+          !(menuToggle === event.target || menuToggle.contains(event.target))
+        )
       ) {
         binding.value()
       }
@@ -45,13 +49,31 @@ function explicitlyCloseMenu(event) {
 
 function scrollWatcher() {
   if(process.client) {
+    let scrollPosition = window.scrollY
     window.onscroll = () => {
-      // @todo Slide header up & decrement height on scroll down
+      let header = document.querySelector('header')
+
+      if(window.scrollY >= header.offsetHeight) {
+        document.documentElement.classList.add('scrolled')
+      }
+      else {
+        document.documentElement.classList.remove('scrolled')
+      }
+
+      // @todo Slide header up on scroll down
       // @todo Slide header down on scroll up
-      // @todo Revert header to original height on return to top
     }
 
-    // @todo on resize to revert menu stuff
+    let resizeTimeout
+    window.onresize = () => {
+      clearTimeout(resizeTimeout)
+
+      resizeTimeout = setTimeout(() => {
+        if(window.innerWidth >= 1024) {
+          explicitlyCloseMenu()
+        }
+      }, 195)
+    }
   }
 }
 
@@ -120,13 +142,16 @@ header {
   height: var(--header-height);
   padding: 0 24px;
   position: sticky;
-  top: 0;
+  top: var(--header-top);
+  z-index: 1;
 
   @include motion {
-    transition: background-color var(--tx-duration) var(--tx-easing);
+    transition: background-color var(--tx-duration) var(--tx-easing),
+                height var(--tx-duration) var(--tx-easing),
+                top var(--tx-duration) var(--tx-easing);
   }
 
-  @include bp(1024px) {
+  @include bp(768px) {
     padding: 0 48px;
   }
 }
@@ -204,13 +229,12 @@ button {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  left: 0;
+  left: var(--menu-left);
   opacity: var(--menu-opacity);
-  padding: 25vh 0 3rem 0;
+  padding: var(--menu-padding-top) 0 3rem 0;
   position: fixed;
-  right: 0;
+  right: var(--menu-right);
   top: var(--header-height);
-  z-index: var(--menu-layer);
 
   @include motion {
     transition: opacity var(--tx-duration) var(--tx-easing);

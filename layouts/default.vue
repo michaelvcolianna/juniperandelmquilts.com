@@ -43,5 +43,6 @@ a[href="#content"] {
 main {
   max-width: 100vw;
   overflow: hidden;
+  position: relative;
 }
 </style>

@@ -15,14 +15,17 @@
   --header-background: var(--color-white);
   --header-foreground: var(--color-black);
   --header-height: 90px;
+  --header-top: 0;
   --line-position: 36%;
   --line-sides: 12%;
   --line-tx: rotate(0);
   --line-tx-bottom: var(--line-tx);
   --line-tx-top: var(--line-tx);
   --line-width: 2px;
-  --menu-layer: -1;
+  --menu-left: -999em;
   --menu-opacity: 0;
+  --menu-padding-top: 25vh;
+  --menu-right: 100%;
   --tx-duration: 195ms;
   --tx-easing: ease-in-out;
 
@@ -34,6 +37,7 @@
     --font-size-h3: 37px;
     --font-size-h4: 28px;
     --header-height: 182px;
+    --menu-padding-top: 15vh;
   }
 
   @include bp(1024px) {
@@ -57,11 +61,20 @@
     --line-tx-bottom: rotate(45deg);
     --line-tx-top: rotate(-45deg);
     --line-width: 1px;
-    --menu-layer: 1;
+    --menu-left: 0;
     --menu-opacity: 1;
+    --menu-right: 0;
 
     height: 100%;
     overflow: hidden;
+  }
+
+  &.scrolled {
+    --header-height: 80px;
+
+    @include bp(768px) {
+      --header-height: 124px;
+    }
   }
 }
 
