@@ -43,6 +43,7 @@ a[href="#content"] {
 main {
   max-width: 100vw;
   overflow: hidden;
+  padding-top: var(--header-height);
   position: relative;
 }
 </style>

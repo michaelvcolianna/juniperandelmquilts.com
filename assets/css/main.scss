@@ -22,10 +22,9 @@
   --line-tx-bottom: var(--line-tx);
   --line-tx-top: var(--line-tx);
   --line-width: 2px;
-  --menu-left: -999em;
+  --menu-layer: -1;
   --menu-opacity: 0;
   --menu-padding-top: 25vh;
-  --menu-right: 100%;
   --tx-duration: 195ms;
   --tx-easing: ease-in-out;
 
@@ -42,6 +41,7 @@
 
   @include bp(1024px) {
     --header-height: 124px;
+    --menu-layer: 1;
   }
 
   @include bp(1295px) {
@@ -61,19 +61,22 @@
     --line-tx-bottom: rotate(45deg);
     --line-tx-top: rotate(-45deg);
     --line-width: 1px;
-    --menu-left: 0;
+    --menu-layer: 1;
     --menu-opacity: 1;
-    --menu-right: 0;
 
     height: 100%;
     overflow: hidden;
   }
 
-  &.scrolled {
-    --header-height: 80px;
+  &.scrolling {
+    --header-top: -91px;
 
     @include bp(768px) {
-      --header-height: 124px;
+      --header-top: -183px;
+    }
+
+    @include bp(1024px) {
+      --header-top: -125px;
     }
   }
 }
