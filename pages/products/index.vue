@@ -1,13 +1,5 @@
 <script setup>
 const showDrafts = computed(() => process.env.NODE_ENV === 'development')
-
-if(process.env.NODE_ENV !== 'development') {
-  throw createError({
-    statusCode: 404,
-    statusMessage: `Page '/products' not found`,
-    fatal: true
-  })
-}
 </script>
 
 <template>
