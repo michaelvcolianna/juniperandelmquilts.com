@@ -1,3 +1,6 @@
+// @todo Go through components, change breakpoint mixins to vars in here, then
+// see about importing mixin file here only instead of nuxt.config:vite
+
 :root {
   --color-black: #000;
   --color-grey-dark: #38383b;
@@ -8,6 +11,7 @@
   --font-family-heading: 'Antic Didone', serif;
   --font-size-accent: 13px;
   --font-size-copy: 18px;
+  --font-size-dual: 16px;
   --font-size-h1: 45px;
   --font-size-h2: 34px;
   --font-size-h3: 37px;
@@ -81,6 +85,14 @@
   }
 }
 
+* {
+  &,
+  &::after,
+  &::before {
+    box-sizing: border-box;
+  }
+}
+
 body {
   background-color: var(--color-grey-dark);
   font-family: var(--font-family-copy);
@@ -98,7 +110,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @each $heading in (h1, h2, h3, h4, h5, h6) {
-  #{$heading} {
+  #{$heading},
+  .#{$heading} {
     font-size: var(--font-size-#{$heading});
   }
 }
@@ -109,6 +122,20 @@ a {
   &:visited {
     color: var(--color-grey-medium);
   }
+}
+
+button,
+input,
+textarea {
+  appearance: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+section,
+footer {
+  margin: auto;
+  max-width: 1295px;
 }
 
 .sr-only {

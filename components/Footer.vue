@@ -4,23 +4,23 @@
 
 <template>
   <footer>
-    <section style="--grid-area: general;">
+    <div style="--grid-area: general;">
       <h4>Juniper &amp; Elm Quilts</h4>
 
       <p>Powered by <ExternalLink href="https://www.storyblok.com/">Storyblok</ExternalLink> and <ExternalLink href="https://nuxt.com/">Nuxt</ExternalLink>.</p>
 
       <SocialMedia />
-    </section>
+    </div>
 
-    <section style="--grid-area: navigation;">
+    <div style="--grid-area: navigation;">
       <Navigation />
-    </section>
+    </div>
 
-    <section class="accent" style="--grid-area: copyright;">
+    <div class="accent" style="--grid-area: copyright;">
       &copy; 2019-{{ new Date().getFullYear() }}.
       All rights reserved.
       Site by <ExternalLink href="https://github.com/michaelvcolianna">MVC</ExternalLink>.
-    </section>
+    </div>
   </footer>
 </template>
 
@@ -42,7 +42,7 @@ footer {
   }
 }
 
-section {
+div {
   grid-area: var(--grid-area);
 
   &:first-child {
