@@ -49,23 +49,7 @@ function explicitlyCloseMenu(event) {
 
 function watchers() {
   if(process.client) {
-    let scrollPosition = 0
-    let resizeTimeout, scrollTimeout
-
-    window.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout)
-
-      scrollTimeout = setTimeout(() => {
-        if((document.body.getBoundingClientRect()).top > scrollPosition) {
-          document.documentElement.classList.remove('scrolling')
-        }
-        else {
-          document.documentElement.classList.add('scrolling')
-        }
-
-        scrollPosition = (document.body.getBoundingClientRect()).top
-      }, 45)
-    })
+    let resizeTimeout
 
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimeout)
@@ -144,21 +128,15 @@ header {
   display: flex;
   height: var(--header-height);
   justify-content: space-between;
-  left: 0;
-  padding: 0 24px;
-  position: fixed;
-  right: 0;
-  top: var(--header-top);
+  padding: 0 2rem;
   z-index: 1;
 
   @include motion {
-    transition: background-color var(--tx-duration) var(--tx-easing),
-                height var(--tx-duration) var(--tx-easing),
-                top var(--tx-duration) var(--tx-easing);
+    transition: background-color var(--tx-duration) var(--tx-easing);
   }
 
   @include bp(768px) {
-    padding: 0 48px;
+    padding: 0 3rem;
   }
 }
 
@@ -257,11 +235,8 @@ button {
     opacity: 1;
     margin: 0 7rem 0 27rem;
     padding: 0;
-    top: var(--header-top);
-
-    @include motion {
-      transition: top var(--tx-duration) var(--tx-easing);
-    }
+    position: absolute;
+    top: 0;
   }
 
   nav {

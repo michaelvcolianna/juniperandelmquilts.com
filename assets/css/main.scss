@@ -16,6 +16,7 @@
   --font-size-h2: 34px;
   --font-size-h3: 37px;
   --font-size-h4: 28px;
+  --form-submit-wrap: wrap;
   --header-background: var(--color-white);
   --header-foreground: var(--color-black);
   --header-height: 90px;
@@ -39,12 +40,13 @@
     --font-size-h2: 34px;
     --font-size-h3: 37px;
     --font-size-h4: 28px;
-    --header-height: 182px;
+    --form-submit-wrap: nowrap;
+    --header-height: 125px;
     --menu-padding-top: 15vh;
   }
 
   @include bp(1024px) {
-    --header-height: 124px;
+    --header-height: 155px;
     --menu-layer: 1;
   }
 
@@ -70,18 +72,6 @@
 
     height: 100%;
     overflow: hidden;
-  }
-
-  &.scrolling {
-    --header-top: -91px;
-
-    @include bp(768px) {
-      --header-top: -183px;
-    }
-
-    @include bp(1024px) {
-      --header-top: -125px;
-    }
   }
 }
 

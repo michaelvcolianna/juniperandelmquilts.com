@@ -1,50 +1,80 @@
 <script setup>
-import kwesforms from 'kwesforms'
-
-onMounted(() => {
-  setTimeout(() => {
-    kwesforms.init()
-  }, 195)
+const form = reactive({
+  isLoading: false,
+  isSubmitted: false,
+  isError: false,
+  firstName: '',
+  lastName: '',
+  email: '',
+  message: ''
 })
+
+async function handleSubmit(event) {
+  const formData = new FormData(event.target)
+
+  form.isLoading = true
+
+  await useFetch('https://formeezy.com/api/v1/forms/63912003de1fcc00082d59be/submissions', {
+    method: 'POST',
+    body: formData
+  })
+    .then((response) => {
+      form.isSubmitted = true
+    })
+    .catch((error) => {
+      form.isError = true
+    })
+    .finally(() => {
+      form.isLoading = false
+    })
+}
 </script>
 
 <template>
   <section>
     <div>
-      <h1 class="h2">Contact us.</h1>
+      <h1>Contact us.</h1>
 
       <p>contact@juniperandelmquilts.com</p>
 
       <SocialMedia />
     </div>
 
-    <form class="kwes-form" action="https://kwesforms.com/api/foreign/forms/R01Mg0yoWlERXfl3ItX5">
+    <div v-if="form.isSubmitted" class="thank-you">
+      Thank you for your message. If it was an inquiry, we'll get back to you within 1-3 business days.
+    </div>
+
+    <form @submit.prevent="handleSubmit" v-else>
       <div class="field dual">
         <div class="label">Name *</div>
 
         <div class="field">
           <label for="first-name">First Name</label>
-          <input id="first-name" name="first_name" type="text" rules="required" autocomplete="given-name" autocorrect="off" spellcheck="false" />
+          <input id="first-name" name="firstName" v-model="form.firstName" type="text" required autocomplete="given-name" autocorrect="off" spellcheck="false" />
         </div>
 
         <div class="field">
           <label for="last-name">Last Name</label>
-          <input id="last-name" name="last_name" type="text" rules="required" autocomplete="family-name" autocorrect="off" spellcheck="false" />
+          <input id="last-name" name="lastName" v-model="form.lastName" type="text" required autocomplete="family-name" autocorrect="off" spellcheck="false" />
         </div>
       </div>
 
       <div class="field">
         <label for="email">Email *</label>
-        <input id="email" name="email" type="email" rules="required|email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" />
+        <input id="email" name="email" v-model="form.email" type="email" required autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" />
       </div>
 
       <div class="field">
         <label for="message">Message *</label>
-        <textarea id="message" name="message" rules="required|min:3"></textarea>
+        <textarea id="message" name="message" v-model="form.message" required></textarea>
       </div>
 
-      <div>
-        <button type="submit">Send</button>
+      <div class="submit">
+        <button :disabled="form.isLoading" type="submit">Send</button>
+
+        <div role="alert" v-if="form.isError">
+          There was a problem submitting your form. If it persists, please try emailing us directly, instead.
+        </div>
       </div>
     </form>
   </section>
@@ -71,15 +101,8 @@ section {
   }
 }
 
-:deep(.kw-alert-error) {
-  @include bp(768px) {
-    position: absolute;
-    top: -4rem;
-  }
-}
-
-:deep(.kw-alert-warning) {
-  display: none;
+.thank-you {
+  font-size: var(--font-size-h4);
 }
 
 .field {
@@ -94,10 +117,6 @@ section {
   input,
   textarea {
     order: 2;
-  }
-
-  :deep(small) {
-    order: 3;
   }
 }
 
@@ -140,10 +159,26 @@ textarea {
   resize: vertical;
 }
 
+.submit {
+  display: flex;
+  flex-wrap: var(--form-submit-wrap);
+  gap: 1rem;
+}
+
 button {
   background-color: var(--color-grey-medium);
-  border: 0;
+  border: 1px solid var(--color-grey-medium);
   color: var(--color-white);
-  padding: 1.25rem 2rem;;
+  padding: 1.25rem 2rem;
+
+  @include motion {
+    transition: background-color var(--tx-duration) var(--tx-easing),
+                color var(--tx-duration) var(--tx-easing);
+  }
+
+  &[disabled] {
+    background-color: transparent;
+    color: var(--color-grey-medium);
+  }
 }
 </style>

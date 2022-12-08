@@ -33,7 +33,7 @@ footer {
     "general"
     "navigation"
     "copyright";
-  padding: 32px 24px;
+  padding: 3rem 1rem;
 
   @include bp(768px) {
     grid-template-areas:

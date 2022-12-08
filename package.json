@@ -14,7 +14,6 @@
   "dependencies": {
     "@nuxtjs/robots": "^3.0.0",
     "@storyblok/nuxt": "^4.6.0",
-    "kwesforms": "^2.1.27",
     "sass": "^1.56.1"
   }
 }
