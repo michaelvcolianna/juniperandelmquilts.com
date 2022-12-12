@@ -1,20 +1,6 @@
 <script setup>
-const storyVersion = process.env.NODE_ENV === 'development'
-  ? 'draft'
-  : 'published'
-
 const { slug } = useRoute().params
-const storyPath = `products/${slug}`
-
-const story = await useAsyncStoryblok(storyPath, { version: storyVersion })
-.then((response) => response)
-  .catch((error) => {
-    throw createError({
-      statusCode: 404,
-      statusMessage: `Page '${storyPath}' not found`,
-      fatal: true
-    })
-  })
+const story = await getStory(`products/${slug}`)
 </script>
 
 <template>

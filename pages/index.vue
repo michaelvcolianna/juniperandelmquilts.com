@@ -1,9 +1,5 @@
 <script setup>
-const storyVersion = process.env.NODE_ENV === 'development'
-  ? 'draft'
-  : 'published'
-
-const story = await useAsyncStoryblok('home', { version: storyVersion })
+const story = await getStory('home')
 </script>
 
 <template>
