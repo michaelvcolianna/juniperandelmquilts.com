@@ -1,13 +1,13 @@
 <script setup>
 const story = await getStory('home')
+
+// @todo Create composable(?) to set meta values
+// - story.content.card
+// - story.content.description
 </script>
 
 <template>
   <div>
-    <pre>NAME {{ story.name }}</pre>
-    <pre>CARD {{ story.content.card }}</pre>
-    <pre>DESCRIPTION {{ story.content.description }}</pre>
-
     <StoryblokComponent v-if="story" :blok="story.content" />
   </div>
 </template>

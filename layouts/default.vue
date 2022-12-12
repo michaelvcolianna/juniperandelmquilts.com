@@ -1,5 +1,6 @@
 <script setup>
 function skipNav(event) {
+  event.preventDefault()
   document.querySelector('#content').scrollIntoView({ behavior: 'smooth' })
 }
 </script>
@@ -34,6 +35,7 @@ a[href="#content"] {
   padding: 0.5rem 1rem;
   position: fixed;
   top: -999rem;
+  z-index: 2;
 
   &:focus {
     top: 1rem;

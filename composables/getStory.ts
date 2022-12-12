@@ -6,6 +6,10 @@ export const getStory = async (storyPath: string) => {
   const story = await useAsyncStoryblok(storyPath, { version: storyVersion })
     .then((response: object) => response)
     .catch((error: object) => {
+      if(process.env.NODE_ENV === 'development') {
+        console.log('--- getStory error', error)
+      }
+
       throw createError({
         statusCode: 404,
         statusMessage: `Page '${storyPath}' not found`,

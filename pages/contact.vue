@@ -86,6 +86,8 @@ section {
   display: flex;
   flex-flow: column;
   gap: 2rem;
+  margin: auto;
+  max-width: 1200px;
   padding: 5rem 1rem;
 
   @include bp(768px) {
