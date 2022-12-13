@@ -18,18 +18,18 @@ export default defineNuxtConfig({
         { rel: 'stylesheet', href: 'https://fonts.bunny.net/css?family=crimson-text:400,400i,700,700i|newsreader:300,400' }
       ],
       meta: [
-        { hid: 'title', property: 'title', content: generic.title },
-        { hid: 'description', property: 'description', content: generic.description },
-        { hid: 'image', property: 'image', content: generic.image },
-        { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:url', property: 'og:url', content: generic.url },
-        { hid: 'og:title', property: 'og:title', content: generic.title },
-        { hid: 'og:description', property: 'og:url', content: generic.description },
-        { hid: 'og:image', property: 'og:image', content: generic.image },
-        { hid: 'twitter:card', property: 'twitter:card', content: 'summary_large_image' },
         { hid: 'twitter:url', property: 'twitter:url', content: generic.url },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'twitter:card', property: 'twitter:card', content: 'summary_large_image' },
+        { hid: 'title', property: 'title', content: generic.title },
+        { hid: 'og:title', property: 'og:title', content: generic.title },
         { hid: 'twitter:title', property: 'twitter:title', content: generic.title },
-        { hid: 'twitter:description', property: 'twitter:url', content: generic.description },
+        { hid: 'description', property: 'description', content: generic.description },
+        { hid: 'og:description', property: 'og:description', content: generic.description },
+        { hid: 'twitter:description', property: 'twitter:description', content: generic.description },
+        { hid: 'image', property: 'image', content: generic.image },
+        { hid: 'og:image', property: 'og:image', content: generic.image },
         { hid: 'twitter:image', property: 'twitter:image', content: generic.image }
       ]
     }
