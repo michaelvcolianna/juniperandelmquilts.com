@@ -1,12 +1,13 @@
-// @todo Go through components, change breakpoint mixins to vars in here, then
-// see about importing mixin file here only instead of nuxt.config:vite
+@import 'mixins';
 
 :root {
+  --button-contact-tx: none;
   --color-black: #000;
   --color-grey-dark: #38383b;
   --color-grey-medium: #a8a6a1;
   --color-grey-light: #dfe0e1;
   --color-white: #fff;
+  --display-contact: flex;
   --font-family-copy: 'Crimson Text', serif;
   --font-family-heading: 'Newsreader', serif;
   --font-size-accent: 13px;
@@ -19,23 +20,69 @@
   --font-size-mantel-copy: 29px;
   --font-size-mantel-heading: 48px;
   --form-submit-wrap: wrap;
+  --gap-contact: 0.5rem;
+  --grid-areas-footer:
+    "general"
+    "navigation"
+    "copyright";
   --header-background: var(--color-white);
+  --header-display-button: block;
   --header-foreground: var(--color-black);
   --header-height: 90px;
-  --header-top: 0;
+  --header-link-tx: none;
+  --header-padding: 0 2rem;
+  --header-tx: none;
+  --header-width-svg: 169px;
   --line-position: 36%;
   --line-sides: 12%;
   --line-tx: rotate(0);
   --line-tx-bottom: var(--line-tx);
   --line-tx-top: var(--line-tx);
   --line-width: 2px;
+  --menu-background: var(--color-grey-dark);
+  --menu-bottom: 0;
+  --menu-flow: column;
+  --menu-height: auto;
   --menu-layer: -1;
+  --menu-margin: 0;
   --menu-opacity: 0;
-  --menu-padding-top: 25vh;
+  --menu-padding: 25vh 0 3rem 0;
+  --menu-position: fixed;
+  --menu-toggle-tx: none;
+  --menu-top: var(--header-height);
+  --nav-link-color: var(--color-white);
+  --nav-link-offset: 7px;
+  --nav-pages-display: grid;
+  --nav-pages-font-size: var(--font-size-h2);
+  --nav-pages-text-align: center;
+  --nav-social-gap: 1rem;
+  --nav-social-height: 1.5rem;
+  --nav-tx: none;
+  --spinner-background: rgba(0, 0, 0, 0.5);
+  --spinner-font-size: 1rem;
+  --spinner-span-position: static;
+  --spinner-svg-display: none;
   --tx-duration: 195ms;
   --tx-easing: ease-in-out;
 
+  @include motion {
+    --button-contact-tx:
+      background-color var(--tx-duration) var(--tx-easing),
+      color var(--tx-duration) var(--tx-easing);
+    --header-link-tx: color var(--tx-duration) var(--tx-easing);
+    --header-tx: background-color var(--tx-duration) var(--tx-easing);
+    --menu-toggle-tx:
+      bottom var(--tx-duration) var(--tx-easing),
+      top var(--tx-duration) var(--tx-easing),
+      transform  var(--tx-duration) var(--tx-easing);
+    --nav-tx: opacity var(--tx-duration) var(--tx-easing);
+    --spinner-font-size: 3rem;
+    --spinner-span-position: fixed;
+    --spinner-svg-display: inline-block;
+  }
+
   @include bp(768px) {
+    --display-contact: grid;
     --font-size-accent: 13px;
     --font-size-copy: 18px;
     --font-size-h1: 45px;
@@ -45,13 +92,36 @@
     --font-size-mantel-copy: 31px;
     --font-size-mantel-heading: 53px;
     --form-submit-wrap: nowrap;
+    --gap-contact: 0.5rem 1rem;
+    --grid-areas-footer:
+      "general navigation"
+      "copyright .";
     --header-height: 125px;
+    --header-padding: 0 3rem;
+    --header-width-svg: 242px;
     --menu-padding-top: 15vh;
   }
 
   @include bp(1024px) {
+    --header-display-button: none;
     --header-height: 155px;
+    --menu-background: transparent;
+    --menu-bottom: auto;
+    --menu-flow: row;
+    --menu-height: var(--header-height);
     --menu-layer: 1;
+    --menu-margin: 0 7rem 0 23rem;
+    --menu-opacity: 1;
+    --menu-padding: 0;
+    --menu-position: absolute;
+    --menu-top: 0;
+    --nav-link-color: var(--color-black);
+    --nav-link-offset: 10px;
+    --nav-pages-display: flex;
+    --nav-pages-font-size: var(--font-size-copy);
+    --nav-pages-text-align: left;
+    --nav-social-gap: 2rem;
+    --nav-social-height: 1.25rem;
   }
 
   @include bp(1295px) {

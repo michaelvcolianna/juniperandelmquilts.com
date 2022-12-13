@@ -29,17 +29,8 @@ footer {
   color: var(--color-white);
   display: grid;
   gap: 2.5rem;
-  grid-template-areas:
-    "general"
-    "navigation"
-    "copyright";
+  grid-template-areas: var(--grid-areas-footer);
   padding: 3rem 1rem;
-
-  @include bp(768px) {
-    grid-template-areas:
-      "general navigation"
-      "copyright .";
-  }
 }
 
 div {

@@ -44,7 +44,12 @@ async function handleSubmit(event) {
       Thank you for your message. If it was an inquiry, we'll get back to you within 1-3 business days.
     </div>
 
-    <form @submit.prevent="handleSubmit" v-else>
+    <form :disabled="form.isLoading" @submit.prevent="handleSubmit" v-else>
+      <div v-if="form.isLoading" class="spinner">
+        <span>Submitting...</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="1em" fill="currentColor"><circle class="bounce-1" cx="4" cy="12" r="3"/><circle class="bounce-1 bounce-2" cx="12" cy="12" r="3"/><circle class="bounce-1 bounce-3" cx="20" cy="12" r="3"/></svg>
+      </div>
+
       <div class="field dual">
         <div class="label">Name *</div>
 
@@ -83,17 +88,13 @@ async function handleSubmit(event) {
 <style scoped lang="scss">
 section {
   color: var(--color-white);
-  display: flex;
+  display: var(--display-contact);
   flex-flow: column;
   gap: 2rem;
+  grid-template-columns: 1fr 1fr;
   margin: auto;
   max-width: 1200px;
   padding: 5rem 1rem;
-
-  @include bp(768px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
 
   & > * {
     display: flex;
@@ -105,6 +106,64 @@ section {
 
 .thank-you {
   font-size: var(--font-size-h4);
+}
+
+form {
+  position: relative;
+
+  &[disabled="true"] {
+    opacity: 0.5;
+  }
+}
+
+.spinner {
+  align-items: flex-end;
+  bottom: 0;
+  display: flex;
+  font-size: var(--spinner-font-size);
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  span {
+    left: -999rem;
+    padding-bottom: 1.25rem;
+    position: var(--spinner-span-position);
+  }
+
+  svg {
+    display: var(--spinner-svg-display);
+  }
+}
+
+.bounce-1 {
+  animation: bounce 1.05s infinite;
+}
+
+.bounce-2 {
+  animation-delay: .1s;
+}
+
+.bounce-3 {
+  animation-delay: .2s;
+}
+
+@keyframes bounce {
+  0%, 57.14% {
+    animation-timing-function: cubic-bezier(0.33, 0.66, 0.66, 1);
+    transform: translate(0);
+  }
+
+  28.57% {
+    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.33);
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translate(0);
+  }
 }
 
 .field {
@@ -124,12 +183,8 @@ section {
 
 .dual {
   display: grid;
-  gap: 0.5rem;
+  gap: var(--gap-contact);
   grid-template-columns: 1fr 1fr;
-
-  @include bp(768px) {
-    gap: 0.5rem 1rem;
-  }
 
   .label {
     grid-column: span 2;
@@ -172,11 +227,7 @@ button {
   border: 1px solid var(--color-grey-medium);
   color: var(--color-white);
   padding: 1.25rem 2rem;
-
-  @include motion {
-    transition: background-color var(--tx-duration) var(--tx-easing),
-                color var(--tx-duration) var(--tx-easing);
-  }
+  transition: var(--button-contact-tx);
 
   &[disabled] {
     background-color: transparent;

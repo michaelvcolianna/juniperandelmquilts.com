@@ -128,33 +128,19 @@ header {
   display: flex;
   height: var(--header-height);
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: var(--header-padding);
+  transition: var(--header-tx);
   z-index: 1;
-
-  @include motion {
-    transition: background-color var(--tx-duration) var(--tx-easing);
-  }
-
-  @include bp(768px) {
-    padding: 0 3rem;
-  }
 }
 
 a {
   color: var(--header-foreground);
-
-  @include motion {
-    transition: color var(--tx-duration) var(--tx-easing);
-  }
+  transition: var(--header-link-tx);
 
   &[href="/"] {
     svg {
       height: auto;
-      width: 169px;
-
-      @include bp(768px) {
-        width: 338px;
-      }
+      width: var(--header-width-svg);
     }
   }
 
@@ -171,13 +157,10 @@ button {
   appearance: none;
   background-color: transparent;
   border: 0;
+  display: var(--header-display-button);
   height: 3rem;
   position: relative;
   width: 3rem;
-
-  @include bp(1024px) {
-    display: none;
-  }
 
   &::after,
   &::before {
@@ -187,12 +170,7 @@ button {
     left: var(--line-sides);
     position: absolute;
     right: var(--line-sides);
-
-    @include motion {
-      transition: bottom var(--tx-duration) var(--tx-easing),
-                  top var(--tx-duration) var(--tx-easing),
-                  transform  var(--tx-duration) var(--tx-easing);
-    }
+    transition: var(--menu-toggle-tx);
   }
 
   &::after {
@@ -208,77 +186,47 @@ button {
 
 #main-nav {
   align-items: center;
-  background-color: var(--color-grey-dark);
-  bottom: 0;
+  background-color: var(--menu-background);
+  bottom: var(--menu-bottom);
   display: flex;
-  flex-flow: column;
+  flex-flow: var(--menu-flow);
+  height: var(--menu-height);
   justify-content: space-between;
   left: 0;
+  margin: var(--menu-margin);
   opacity: var(--menu-opacity);
-  padding: var(--menu-padding-top) 0 3rem 0;
-  position: fixed;
+  padding: var(--menu-padding);
+  position: var(--menu-position);
   right: 0;
-  top: var(--header-height);
+  top: var(--menu-top);
+  transition: none;
   z-index: var(--menu-layer);
-
-  @include motion {
-    transition: opacity var(--tx-duration) var(--tx-easing);
-  }
-
-  @include bp(1024px) {
-    background-color: transparent;
-    bottom: auto;
-    flex-flow: row;
-    flex-grow: 1;
-    height: var(--header-height);
-    justify-content: space-between;
-    opacity: 1;
-    margin: 0 7rem 0 27rem;
-    padding: 0;
-    position: absolute;
-    top: 0;
-  }
 
   nav {
     &:nth-child(1) {
-      font-size: var(--font-size-h2);
-      text-align: center;
-
-      @include bp(1024px) {
-        display: flex;
-        font-size: var(--font-size-copy);
-        gap: 1.25rem;
-        text-align: left;
-      }
+      display: var(--nav-pages-display);
+      font-size: var(--nav-pages-font-size);
+      gap: 1.25rem;
+      text-align: var(--nav-pages-text-align);
     }
 
     &:nth-child(2) {
-      @include bp(1024px) {
-        gap: 2rem;
+      gap: var(--nav-social-gap);
 
-        :deep(svg) {
-          height: 1.25rem;
-        }
+      :deep(svg) {
+        height: var(--nav-social-height);
       }
     }
   }
 
   :deep(a) {
-    color: var(--color-white);
+    color: var(--nav-link-color);
     text-decoration: none;
-
-    @include bp(1024px) {
-      color: var(--color-black);
-    }
 
     &[aria-current="page"] {
       text-decoration: underline;
       text-decoration-thickness: 1px;
-      text-underline-offset: 7px;
-
-      @include bp(1024px) {
-        text-underline-offset: 10px;
-      }
+      text-underline-offset: var(--nav-link-offset);
     }
   }
 }
