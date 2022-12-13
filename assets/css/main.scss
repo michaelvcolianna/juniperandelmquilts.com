@@ -218,3 +218,8 @@ footer {
 .accent {
   font-size: var(--font-size-accent);
 }
+
+.clipped {
+  overflow: scroll;
+  width: 100vw;
+}

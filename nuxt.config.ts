@@ -1,3 +1,5 @@
+import { apiPlugin } from '@storyblok/vue'
+
 const generic = {
   title: 'Juniper & Elm Quilts',
   description: 'Juniper & Elm Quilts: Creating artwork you can curl up into!',
@@ -42,6 +44,8 @@ export default defineNuxtConfig({
         accessToken: process.env.NODE_ENV === 'development'
           ? process.env.STORYBLOK_PREVIEW_KEY
           : process.env.STORYBLOK_PUBLIC_KEY
+        ,
+        use: [apiPlugin]
       }
     ],
     [

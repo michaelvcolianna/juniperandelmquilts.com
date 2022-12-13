@@ -4,6 +4,6 @@ const props = defineProps({ blok: Object })
 
 <template>
   <div v-editable="blok" class="clipped">
-    <pre>CTA {{ blok }}</pre>
+    <pre>ACCENT IMAGE {{ blok }}</pre>
   </div>
 </template>

@@ -32,6 +32,7 @@ div {
 }
 
 img {
+  display: block;
   filter: blur(1.75px)
           brightness(65%)
           grayscale(0.15);

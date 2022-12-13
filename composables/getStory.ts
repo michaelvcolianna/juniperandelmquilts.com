@@ -3,7 +3,18 @@ export const getStory = async (storyPath: string) => {
     ? 'draft'
     : 'published'
 
-  const story = await useAsyncStoryblok(storyPath, { version: storyVersion })
+  const resolveRelations = ['featured-items.items']
+
+  const story = await useAsyncStoryblok(
+    storyPath,
+    {
+      version: storyVersion,
+      resolve_relations: resolveRelations
+    },
+    {
+      resolveRelations
+    }
+  )
     .then((response: object) => response)
     .catch((error: object) => {
       if(process.env.NODE_ENV === 'development') {
