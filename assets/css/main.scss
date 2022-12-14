@@ -1,4 +1,6 @@
 :root {
+  --accent-height: 130vw;
+  --accent-position: center;
   --button-contact-tx: none;
   --color-black: #000;
   --color-green: #1a5123;
@@ -83,6 +85,8 @@
   }
 
   @media (min-width: 768px) {
+    --accent-height: 70vw;
+    --accent-position: center 60%;
     --display-contact: grid;
     --featured-columns: 1fr 1fr;
     --featured-width: 75vw;
@@ -104,6 +108,8 @@
   }
 
   @media (min-width: 1024px) {
+    --accent-height: 50vw;
+    --accent-position: center 60%;
     --featured-width: 50vw;
     --header-display-button: none;
     --header-height: 155px;
@@ -127,6 +133,8 @@
   }
 
   @media (min-width: 1295px) {
+    --accent-height: 35vw;
+    --accent-position: center 60%;
     --font-size-accent: 20px;
     --font-size-copy: 29px;
     --font-size-h1: 70px;
