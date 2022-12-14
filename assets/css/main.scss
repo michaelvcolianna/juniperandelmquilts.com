@@ -1,5 +1,6 @@
 :root {
   --accent-height: 130vw;
+  --accent-padding: 1em;
   --accent-position: center;
   --button-contact-tx: none;
   --color-black: #000;
@@ -109,6 +110,7 @@
 
   @media (min-width: 1024px) {
     --accent-height: 50vw;
+    --accent-padding: 2em;
     --accent-position: center 60%;
     --featured-width: 50vw;
     --header-display-button: none;

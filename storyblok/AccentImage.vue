@@ -17,7 +17,7 @@ const props = defineProps({ blok: Object })
 <style scoped lang="scss">
 section {
   background-color: var(--color-white);
-  padding: 1rem;
+  padding: var(--accent-padding);
 }
 
 img {
