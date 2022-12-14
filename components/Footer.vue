@@ -13,7 +13,7 @@
     </div>
 
     <div style="--grid-area: navigation;">
-      <Navigation />
+      <Navigation :in-footer="true" />
     </div>
 
     <div class="accent" style="--grid-area: copyright;">
@@ -31,6 +31,14 @@ footer {
   gap: 2.5rem;
   grid-template-areas: var(--grid-areas-footer);
   padding: 3rem 1rem;
+}
+
+a {
+  &:active,
+  &:link,
+  &:visited {
+    color: var(--color-grey-light);
+  }
 }
 
 div {

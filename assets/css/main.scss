@@ -1,6 +1,7 @@
 :root {
   --button-contact-tx: none;
   --color-black: #000;
+  --color-green: #1a5123;
   --color-grey-dark: #38383b;
   --color-grey-medium: #a8a6a1;
   --color-grey-light: #dfe0e1;
@@ -185,7 +186,7 @@ a {
   &:active,
   &:link,
   &:visited {
-    color: var(--color-grey-medium);
+    color: var(--color-green);
   }
 }
 

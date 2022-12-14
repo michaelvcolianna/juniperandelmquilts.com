@@ -52,7 +52,9 @@ div {
   justify-content: center;
   margin: auto;
   text-align: center;
-  text-shadow: 0 1px 2px var(--color-black);
+  text-shadow:
+    0 1px 2px var(--color-black),
+    0 0 5rem var(--color-black);
   width: 80vw;
 }
 
