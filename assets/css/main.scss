@@ -120,7 +120,7 @@
     --menu-flow: row;
     --menu-height: var(--header-height);
     --menu-layer: 1;
-    --menu-margin: 0 7rem 0 23rem;
+    --menu-margin: 0 8rem 0 23rem;
     --menu-opacity: 1;
     --menu-padding: 0;
     --menu-position: absolute;
@@ -143,6 +143,8 @@
     --font-size-h2: 54px;
     --font-size-h3: 56px;
     --font-size-h4: 44px;
+    --menu-margin: 0 9rem 0 23rem;
+    --nav-social-height: 1.5rem;
   }
 
   &.menu-open {
