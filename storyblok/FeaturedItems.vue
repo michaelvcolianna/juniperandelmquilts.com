@@ -33,7 +33,7 @@ const bestImage = (story) => {
                 <StoryblokImage
                   :decorative="true"
                   :image="bestImage(story)"
-                  height="425"
+                  height="450"
                   width="340"
                   sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw"
                 />
@@ -83,10 +83,10 @@ section {
 
 .inner {
   display: grid;
-  gap: 2rem;
+  gap: 2em;
   margin: auto;
-  padding: 5rem 0;
-  width: 340px;
+  max-width: var(--featured-width);
+  padding: 5em 0;
 }
 
 h2,
@@ -96,29 +96,32 @@ h2,
 }
 
 .featured-copy {
-  padding-bottom: 3rem;
+  padding-bottom: 3em;
 }
 
 .featured-items {
   display: grid;
   gap: 3em;
+  grid-template-columns: var(--featured-columns);
 }
 
 figure {
   display: grid;
-  gap: 1rem;
+  gap: 1em;
   margin: 0;
 }
 
 img {
   display: block;
+  height: auto;
   margin: auto;
   max-width: 100%;
+  width: 100%;
 }
 
 figcaption {
   display: grid;
-  gap: 0.5rem;
+  gap: 0.5em;
 }
 
 a {
