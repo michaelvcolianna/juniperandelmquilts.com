@@ -95,7 +95,7 @@ img,
 img {
   display: block;
   filter: blur(1px)
-          brightness(65%)
+          brightness(50%)
           contrast(50%)
           grayscale(0.15);
   height: var(--newsletter-height);
