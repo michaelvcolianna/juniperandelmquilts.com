@@ -60,6 +60,12 @@ function watchers() {
         }
       }, 45)
     })
+
+    window.addEventListener('keyup', (event) => {
+      if(event.key.toLowerCase() === 'escape') {
+        explicitlyCloseMenu()
+      }
+    })
   }
 }
 
