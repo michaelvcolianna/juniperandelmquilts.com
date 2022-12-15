@@ -3,7 +3,7 @@ const props = defineProps({ blok: Object })
 </script>
 
 <template>
-  <section v-editable="blok" aria-hidden="true" class="clipped">
+  <section v-editable="blok" aria-hidden="true" :id="blok._uid">
     <StoryblokImage
       :decorative="true"
       :image="blok.image"

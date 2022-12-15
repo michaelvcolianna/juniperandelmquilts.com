@@ -238,7 +238,7 @@ button {
   border: 1px solid var(--color-grey-light);
   color: var(--color-black);
   padding: 1.25rem 2rem;
-  transition: var(--button-contact-tx);
+  transition: var(--button-tx);
 
   &[disabled] {
     background-color: transparent;

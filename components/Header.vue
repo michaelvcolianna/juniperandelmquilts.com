@@ -62,7 +62,7 @@ function watchers() {
     })
 
     window.addEventListener('keyup', (event) => {
-      if(event.key.toLowerCase() === 'escape') {
+      if(event.key && event.key.toLowerCase() === 'escape') {
         explicitlyCloseMenu()
       }
     })
