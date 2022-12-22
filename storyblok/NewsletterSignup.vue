@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps({ blok: Object })
 
-// @todo Switch from Formeezy to Sendinblue for this, removing the redunant code
+const config = useRuntimeConfig()
 
 const form = reactive({
   isLoading: false,
@@ -10,20 +10,25 @@ const form = reactive({
   email: '',
 })
 
-
-async function handleSubmit(event) {
-  const formData = new FormData(event.target)
-
+async function handleSubmit() {
   form.isLoading = true
 
-  await useFetch('https://formeezy.com/api/v1/forms/639a787403e0a70008e4df00/submissions', {
+  await useFetch('https://api.sendinblue.com/v3/contacts', {
     method: 'POST',
-    body: formData
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      'api-key': config.sibApiKey
+    },
+    body: JSON.stringify({
+      email: form.email,
+      listIds: [2]
+    })
   })
-    .then((response) => {
+    .then(response => {
       form.isSubmitted = true
     })
-    .catch((error) => {
+    .catch(error => {
       form.isError = true
     })
     .finally(() => {
