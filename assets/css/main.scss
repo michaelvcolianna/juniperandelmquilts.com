@@ -73,6 +73,7 @@
   --spinner-svg-display: none;
   --tx-duration: 195ms;
   --tx-easing: ease-in-out;
+  --width-instagram: 100%;
 
   @media (prefers-reduced-motion: no-preference) {
     --button-tx:
@@ -88,6 +89,10 @@
     --spinner-font-size: 3rem;
     --spinner-span-position: fixed;
     --spinner-svg-display: inline-block;
+  }
+
+  @media (min-width: 574px) {
+    --width-instagram: 540px;
   }
 
   @media (min-width: 768px) {

@@ -15,7 +15,8 @@ export default defineNuxtConfig({
       link: [
         { hid: 'canonical', rel: 'canonical', href: generic.url },
         { rel: 'preconnect', href: 'https://fonts.bunny.net' },
-        { rel: 'stylesheet', href: 'https://fonts.bunny.net/css?family=crimson-text:400,400i,700,700i|newsreader:300,400' }
+        { rel: 'stylesheet', href: 'https://fonts.bunny.net/css?family=crimson-text:400,400i,700,700i|newsreader:300,400' },
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' }
       ],
       meta: [
         { hid: 'og:url', property: 'og:url', content: generic.url },
