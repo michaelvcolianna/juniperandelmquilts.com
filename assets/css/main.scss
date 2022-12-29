@@ -2,6 +2,7 @@
   --accent-height: 130vw;
   --accent-padding: 1em;
   --accent-position: center;
+  --blog-padding: 1rem 1.5rem;
   --button-tx: none;
   --color-black: #000;
   --color-green: #1a5123;
@@ -43,6 +44,11 @@
   --line-tx-bottom: var(--line-tx);
   --line-tx-top: var(--line-tx);
   --line-width: 2px;
+  --list-article-gap: 1rem;
+  --list-article-headline: var(--font-size-h2);
+  --list-article-justify: flex-start;
+  --list-article-layout: grid;
+  --list-ul-columns: 1fr;
   --menu-background: var(--color-grey-dark);
   --menu-bottom: 0;
   --menu-flow: column;
@@ -98,6 +104,7 @@
   @media (min-width: 768px) {
     --accent-height: 70vw;
     --accent-position: center 60%;
+    --blog-padding: 2rem;
     --display-contact: grid;
     --featured-columns: 1fr 1fr;
     --featured-width: 75vw;
@@ -115,6 +122,11 @@
     --header-height: 125px;
     --header-padding: 0 3rem;
     --header-width-svg: 242px;
+    --list-article-gap: 2rem;
+    --list-article-headline: var(--font-size-h4);
+    --list-article-justify: center;
+    --list-article-layout: flex;
+    --list-ul-columns: 1fr 1fr;
     --menu-padding-top: 15vh;
     --newsletter-flex: row;
     --newsletter-gap: 1rem;

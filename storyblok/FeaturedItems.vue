@@ -1,19 +1,5 @@
 <script setup>
-import { format } from 'date-fns'
-
 const props = defineProps({ blok: Object })
-
-const storyDate = (date) => {
-  let dateObj = new Date(date)
-
-  return format(dateObj, "MMM do, yyyy")
-}
-
-const bestImage = (story) => {
-  return story.content.body[0].hero.filename
-    ? story.content.body[0].hero
-    : story.content.card
-}
 </script>
 
 <template>
@@ -32,7 +18,7 @@ const bestImage = (story) => {
               <NuxtLink :to="story.full_slug">
                 <StoryblokImage
                   :decorative="true"
-                  :image="bestImage(story)"
+                  :image="bestImage(story.content)"
                   height="450"
                   width="340"
                   sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw"
