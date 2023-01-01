@@ -3,9 +3,28 @@ const props = defineProps({ blok: Object })
 </script>
 
 <template>
-  <div v-editable="blok">
-    <pre>EXCERPT {{ blok.excerpt || '{use description}' }}</pre>
-    <pre>HERO {{ blok.hero.filename || '{use card}' }}</pre>
-    <pre>BODY {{ blok.body }}</pre>
-  </div>
+  <section v-editable="blok" id="blog-content">
+    <RichText :content="blok.body" />
+  </section>
 </template>
+
+<style scoped lang="scss">
+#blog-content {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+:deep(h2) {
+  margin-top: 2rem;
+}
+
+:deep(p) {
+  line-height: 1.5;
+}
+
+:deep(img) {
+  display: block;
+  max-width: 100%;
+}
+</style>

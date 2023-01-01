@@ -2,7 +2,14 @@
   --accent-height: 130vw;
   --accent-padding: 1em;
   --accent-position: center;
+  --aligned-image-left-float: none;
+  --aligned-image-left-margin: 0;
+  --aligned-image-right-float: none;
+  --aligned-image-right-margin: 0;
+  --aligned-image-text-margin: 2rem;
+  --blog-back-margin: 0 1rem 5rem 1rem;
   --blog-padding: 1rem 1.5rem;
+  --blog-width: 80vw;
   --button-tx: none;
   --color-black: #000;
   --color-green: #1a5123;
@@ -25,6 +32,8 @@
   --font-size-mantel-copy: 1.8125em;
   --font-size-mantel-heading: 2.85em;
   --form-submit-wrap: wrap;
+  --gallery-columns: 1fr 1fr;
+  --gallery-width: calc(300px + 1rem);
   --gap-contact: 0.5rem;
   --grid-areas-footer:
     "general"
@@ -104,7 +113,14 @@
   @media (min-width: 768px) {
     --accent-height: 70vw;
     --accent-position: center 60%;
+    --aligned-image-left-float: left;
+    --aligned-image-left-margin: 0 1rem 1rem 0;
+    --aligned-image-right-float: right;
+    --aligned-image-right-margin: 0 0 1rem 1rem;
+    --aligned-image-text-margin: 0;
+    --blog-back-margin: 0 2rem 5rem 2rem;
     --blog-padding: 2rem;
+    --blog-width: 600px;
     --display-contact: grid;
     --featured-columns: 1fr 1fr;
     --featured-width: 75vw;
@@ -115,6 +131,8 @@
     --font-size-h3: 46px;
     --font-size-h4: 35px;
     --form-submit-wrap: nowrap;
+    --gallery-columns: 1fr 1fr 1fr 1fr;
+    --gallery-width: calc(600px + 3rem);
     --gap-contact: 0.5rem 1rem;
     --grid-areas-footer:
       "general navigation"
