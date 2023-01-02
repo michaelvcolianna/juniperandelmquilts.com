@@ -4,7 +4,9 @@ const generic = {
   title: 'Juniper & Elm Quilts',
   description: 'Juniper & Elm Quilts: Creating artwork you can curl up into!',
   image: 'https://a.storyblok.com/f/159199/1200x627/0b448f6439/card.jpg',
-  url: 'https://www.juniperandelmquilts.com'
+  url: process.env.NODE_ENV === 'development'
+    ? 'https://localhost:3000'
+    : 'https://www.juniperandelmquilts.com'
 }
 
 // https://nuxt.com/docs/api/configuration/nuxt-config

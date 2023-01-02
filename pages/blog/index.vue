@@ -97,6 +97,30 @@ watch(route, () => {
 
   getArticles()
 })
+
+
+const meta = {
+  title: 'Blog | Juniper & Elm Quilts',
+  description: 'Our blog with quilting projects, updates, and information.',
+  url: metaUrl()
+}
+
+useHead({
+  title: meta.title,
+  link: [
+    { hid: 'canonical', rel: 'canonical', href: meta.url },
+  ],
+  meta: [
+    { hid: 'og:url', property: 'og:url', content: meta.url },
+    { hid: 'twitter:url', property: 'twitter:url', content: meta.url },
+    { hid: 'title', property: 'title', content: meta.title },
+    { hid: 'og:title', property: 'og:title', content: meta.title },
+    { hid: 'twitter:title', property: 'twitter:title', content: meta.title },
+    { hid: 'description', property: 'description', content: meta.description },
+    { hid: 'og:description', property: 'og:description', content: meta.description },
+    { hid: 'twitter:description', property: 'twitter:description', content: meta.description }
+  ]
+})
 </script>
 
 <template>

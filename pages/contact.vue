@@ -28,6 +28,29 @@ async function handleSubmit(event) {
       form.isLoading = false
     })
 }
+
+const meta = {
+  title: 'Contact | Juniper & Elm Quilts',
+  description: 'Methods to contact us, as well as a form to submit a message.',
+  url: metaUrl()
+}
+
+useHead({
+  title: meta.title,
+  link: [
+    { hid: 'canonical', rel: 'canonical', href: meta.url },
+  ],
+  meta: [
+    { hid: 'og:url', property: 'og:url', content: meta.url },
+    { hid: 'twitter:url', property: 'twitter:url', content: meta.url },
+    { hid: 'title', property: 'title', content: meta.title },
+    { hid: 'og:title', property: 'og:title', content: meta.title },
+    { hid: 'twitter:title', property: 'twitter:title', content: meta.title },
+    { hid: 'description', property: 'description', content: meta.description },
+    { hid: 'og:description', property: 'og:description', content: meta.description },
+    { hid: 'twitter:description', property: 'twitter:description', content: meta.description }
+  ]
+})
 </script>
 
 <template>

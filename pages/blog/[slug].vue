@@ -2,9 +2,32 @@
 const { slug } = useRoute().params
 const story = await getStory(`blog/${slug}`)
 
-// @todo Stuff for card and description
-// - card: story.content.body[0].hero.filename OR story.content.card
-// - description: story.content.body[0].excerpt OR story.content.description
+const meta = {
+  title: `${story.value.name} | Juniper & Elm Quilts`,
+  description: story.value.content.body[0].excerpt || story.value.content.description,
+  url: metaUrl(),
+  image: bestImage(story.value.content).filename
+}
+
+useHead({
+  title: meta.title,
+  link: [
+    { hid: 'canonical', rel: 'canonical', href: meta.url },
+  ],
+  meta: [
+    { hid: 'og:url', property: 'og:url', content: meta.url },
+    { hid: 'twitter:url', property: 'twitter:url', content: meta.url },
+    { hid: 'title', property: 'title', content: meta.title },
+    { hid: 'og:title', property: 'og:title', content: meta.title },
+    { hid: 'twitter:title', property: 'twitter:title', content: meta.title },
+    { hid: 'description', property: 'description', content: meta.description },
+    { hid: 'og:description', property: 'og:description', content: meta.description },
+    { hid: 'twitter:description', property: 'twitter:description', content: meta.description },
+    { hid: 'image', property: 'image', content: meta.image },
+    { hid: 'og:image', property: 'og:image', content: meta.image },
+    { hid: 'twitter:image', property: 'twitter:image', content: meta.image }
+  ]
+})
 </script>
 
 <template>

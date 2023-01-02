@@ -85,8 +85,6 @@ async function handleSubmit() {
 </template>
 
 <style scoped lang="scss">
-// @todo Create global classes for text-over-image blocks and implement here
-
 section {
   display: grid;
   grid-template-areas: "mantel";
