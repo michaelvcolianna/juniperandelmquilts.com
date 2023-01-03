@@ -10,20 +10,16 @@ const form = reactive({
   email: '',
 })
 
-const headers = {
-  accept: 'application/json',
-  'content-type': 'application/json',
-  'api-key': config.sibApiKey
-}
-
 async function handleSubmit() {
   form.isLoading = true
 
-  console.log('--- submitting to sendinblue v3 api using headers', headers)
-
   await useFetch('https://api.sendinblue.com/v3/contacts', {
     method: 'POST',
-    headers: headers,
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      'api-key': config.public.sibApiKey
+    },
     body: JSON.stringify({
       email: form.email,
       listIds: [2]
@@ -31,15 +27,12 @@ async function handleSubmit() {
   })
     .then(response => {
       form.isSubmitted = true
-      console.log('... success', response)
     })
     .catch(error => {
       form.isError = true
-      console.log('... error', error)
     })
     .finally(() => {
       form.isLoading = false
-      console.log('... finally')
     })
 }
 </script>

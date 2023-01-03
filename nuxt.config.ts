@@ -71,6 +71,8 @@ export default defineNuxtConfig({
     ]
   ],
   runtimeConfig: {
-    sibApiKey: process.env.SIB_API_KEY
+    public: {
+      sibApiKey: process.env.SIB_API_KEY
+    }
   }
 })
