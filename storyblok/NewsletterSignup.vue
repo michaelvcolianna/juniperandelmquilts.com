@@ -19,14 +19,14 @@ const sibHeaders = {
 async function handleSubmit() {
   form.isLoading = true
 
-  console.log('--- using sib with headers', sibHeaders)
-
-  await useFetch('https://api.sendinblue.com/v3/contacts', {
+  await useFetch('https://api.sendinblue.com/v3/contacts/doubleOptinConfirmation', {
     method: 'POST',
     headers: sibHeaders,
     body: JSON.stringify({
       email: form.email,
-      listIds: [2]
+      includeListIds: [2],
+      templateId: 2,
+      redirectionUrl: 'https://www.juniperandelmquilts.com'
     })
   })
     .then(response => {
