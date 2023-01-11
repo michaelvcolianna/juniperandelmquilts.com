@@ -10,16 +10,20 @@ const form = reactive({
   email: '',
 })
 
+const sibHeaders = {
+  accept: 'application/json',
+  'content-type': 'application/json',
+  'api-key': config.public.sibApiKey
+}
+
 async function handleSubmit() {
   form.isLoading = true
 
+  console.log('--- using sib with headers', sibHeaders)
+
   await useFetch('https://api.sendinblue.com/v3/contacts', {
     method: 'POST',
-    headers: {
-      accept: 'application/json',
-      'content-type': 'application/json',
-      'api-key': config.public.sibApiKey
-    },
+    headers: sibHeaders,
     body: JSON.stringify({
       email: form.email,
       listIds: [2]
