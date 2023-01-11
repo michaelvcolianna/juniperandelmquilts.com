@@ -58,7 +58,7 @@ useHead({
     <div class="flexy">
       <h1>Contact us.</h1>
 
-      <p>contact@juniperandelmquilts.com</p>
+      <p>info@juniperandelmquilts.com</p>
 
       <SocialMedia />
     </div>
