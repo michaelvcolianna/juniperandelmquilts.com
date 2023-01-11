@@ -10,16 +10,18 @@ const form = reactive({
   email: '',
 })
 
+const sibHeaders = {
+  accept: 'application/json',
+  'content-type': 'application/json',
+  'api-key': config.public.sibApiKey
+}
+
 async function handleSubmit() {
   form.isLoading = true
 
   await useFetch('https://api.sendinblue.com/v3/contacts/doubleOptinConfirmation', {
     method: 'POST',
-    headers: {
-      accept: 'application/json',
-      'content-type': 'application/json',
-      'api-key': config.public.sibApiKey
-    },
+    headers: sibHeaders,
     body: JSON.stringify({
       email: form.email,
       includeListIds: [2],
