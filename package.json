@@ -8,13 +8,13 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@nuxt/image-edge": "^1.0.0-27827328.bc9ddc0",
-    "nuxt": "3.0.0"
+    "@nuxt/image-edge": "^1.0.0-27840416.dc1ed65",
+    "nuxt": "^3.0.0"
   },
   "dependencies": {
     "@nuxtjs/robots": "^3.0.0",
-    "@storyblok/nuxt": "^4.6.0",
+    "@storyblok/nuxt": "^5.0.0",
     "date-fns": "^2.29.3",
-    "sass": "^1.56.1"
+    "sass": "^1.57.1"
   }
 }
