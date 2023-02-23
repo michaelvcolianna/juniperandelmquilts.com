@@ -1,6 +1,6 @@
 # Juniper & Elm Quilts
 
-This is a rebuild of the current SquareSpace site using Storyblok.
+This is my wife's quilting website. Built using [Nuxt 3](https://nuxt.com) and [Storyblok](https://www.storyblok.com).
 
 ## Nuxt Information
 
