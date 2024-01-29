@@ -56,7 +56,7 @@ export default defineNuxtConfig({
       {
         provider: 'storyblok',
         storyblok: {
-          baseURL: 'https://a.storyblok.com'
+          baseURL: 'https://assets.juniperandelmquilts.com'
         }
       }
     ],

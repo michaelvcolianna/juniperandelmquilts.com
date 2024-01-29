@@ -8,15 +8,11 @@ const props = defineProps({
     default: false
   }
 })
-
-const src = computed(() => {
-  return props.image.filename.replace('https://a.storyblok.com', '')
-})
 </script>
 
 <template>
   <NuxtImg
-    :src="src"
+    :src="image.filename"
     :alt="decorative ? '' : image.alt"
     v-bind="attrs"
   />
