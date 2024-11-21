@@ -33,7 +33,8 @@ export default defineNuxtConfig({
         { hid: 'twitter:description', property: 'twitter:description', content: generic.description },
         { hid: 'image', property: 'image', content: generic.image },
         { hid: 'og:image', property: 'og:image', content: generic.image },
-        { hid: 'twitter:image', property: 'twitter:image', content: generic.image }
+        { hid: 'twitter:image', property: 'twitter:image', content: generic.image },
+        { hid: 'robots', property: 'robots', content: 'noai, noimageai' }
       ]
     }
   },
@@ -57,15 +58,6 @@ export default defineNuxtConfig({
         provider: 'storyblok',
         storyblok: {
           baseURL: 'https://assets.juniperandelmquilts.com'
-        }
-      }
-    ],
-    [
-      '@nuxtjs/robots',
-      {
-        rules: {
-          UserAgent: '*',
-          Disallow: ''
         }
       }
     ]
