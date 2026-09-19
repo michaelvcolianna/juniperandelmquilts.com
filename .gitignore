@@ -28,6 +28,9 @@ Thumbs.db
 # Local dev TLS certs (generate with mkcert; never commit)
 *.pem
 
+# Storyblok CLI reports and rollback changesets
+.storyblok/
+
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*

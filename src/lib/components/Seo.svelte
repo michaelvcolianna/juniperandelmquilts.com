@@ -7,7 +7,8 @@
 	interface Props {
 		/** Page title, without the site-name suffix. Omit on the home page. */
 		title?: string;
-		description?: string;
+		/** Optional CMS fields arrive as `null` rather than `undefined`. */
+		description?: string | null;
 		image?: StoryblokAsset | string | null;
 		type?: 'website' | 'article';
 		publishedAt?: string | null;

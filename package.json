@@ -16,7 +16,12 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run"
+		"test": "npm run test:unit -- --run",
+		"schema:validate": "storyblok schema validate src/lib/storyblok/schema.ts",
+		"schema:diff": "storyblok schema diff --from 159199 --to src/lib/storyblok/schema.ts",
+		"schema:push:dry": "storyblok schema push src/lib/storyblok/schema.ts --space 159199 --dry-run",
+		"schema:push": "storyblok schema push src/lib/storyblok/schema.ts --space 159199",
+		"schema:rollback": "storyblok schema rollback"
 	},
 	"dependencies": {
 		"@storyblok/richtext": "^5.3.1",
@@ -26,6 +31,7 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
+		"@storyblok/schema": "0.4.2",
 		"@sveltejs/adapter-netlify": "^6.0.4",
 		"@sveltejs/kit": "^2.70.3",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
@@ -36,6 +42,7 @@
 		"globals": "^17.6.0",
 		"prettier": "^3.8.3",
 		"prettier-plugin-svelte": "^4.1.0",
+		"storyblok": "^4.23.0",
 		"svelte": "^5.57.1",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",

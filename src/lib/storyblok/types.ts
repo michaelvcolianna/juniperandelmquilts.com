@@ -1,95 +1,60 @@
+import type { BlockContent, AssetFieldValue, RichTextFieldValue } from '@storyblok/schema';
+import type {
+	AnyBlock,
+	accentImageBlock,
+	alignedImageBlock,
+	blogPostBlock,
+	contentBlock,
+	ctaBlock,
+	featuredItemsBlock,
+	imageGalleryBlock,
+	mantelBlock,
+	newsletterSignupBlock
+} from './schema';
+
 /**
- * Shapes for the Storyblok space (id 159199). These mirror the fields the Nuxt
- * components actually read — they are deliberately not exhaustive.
+ * Content shapes for space 159199, derived from `schema.ts` rather than written
+ * by hand. Renaming a field in the schema now breaks the components that read
+ * it, instead of the two drifting silently.
  */
 
-export interface StoryblokAsset {
-	filename: string;
-	alt?: string | null;
-	title?: string | null;
-	focus?: string | null;
-}
+export type StoryblokAsset = AssetFieldValue;
+export type RichTextDocument = RichTextFieldValue;
 
-/** Storyblok's richtext document node. */
-export interface RichTextNode {
-	type: string;
-	content?: RichTextNode[];
-	attrs?: Record<string, unknown>;
-	marks?: unknown[];
-	text?: string;
-}
-
-export interface RichTextDocument {
-	type: 'doc';
-	content?: RichTextNode[];
-}
-
+/**
+ * A block instance of unknown type, as delivered by the CDA.
+ *
+ * Deliberately structural rather than the generated union: `Blok.svelte` and
+ * `RichText.svelte` dispatch on `component` at runtime over genuinely
+ * heterogeneous data, and every root story content object flows through here
+ * too. The generated per-block types above are where the schema earns its keep.
+ */
 export interface Blok {
 	_uid: string;
 	component: string;
+	_editable?: string;
 	[key: string]: unknown;
 }
 
-export interface MantelBlok extends Blok {
-	component: 'mantel';
-	image: StoryblokAsset;
-	headline: string;
-	copy?: string;
-}
+export type MantelBlok = BlockContent<typeof mantelBlock, AnyBlock>;
+export type AccentImageBlok = BlockContent<typeof accentImageBlock, AnyBlock>;
+export type AlignedImageBlok = BlockContent<typeof alignedImageBlock, AnyBlock>;
+export type ImageGalleryBlok = BlockContent<typeof imageGalleryBlock, AnyBlock>;
+export type CtaBlok = BlockContent<typeof ctaBlock, AnyBlock>;
+export type NewsletterSignupBlok = BlockContent<typeof newsletterSignupBlock, AnyBlock>;
+export type BlogPostBlok = BlockContent<typeof blogPostBlock, AnyBlock>;
+export type ContentBlok = BlockContent<typeof contentBlock, AnyBlock>;
 
-export interface ContentBlok extends Blok {
-	component: 'content';
-	body: Blok[];
-}
-
-export interface FeaturedItemsBlok extends Blok {
-	component: 'featured-items';
-	headline: string;
-	copy?: RichTextDocument;
-	/** Resolved story relations, via `resolve_relations`. */
-	items?: StoryblokStory[];
-	images?: StoryblokAsset[];
-}
-
-export interface AccentImageBlok extends Blok {
-	component: 'accent-image';
-	image: StoryblokAsset;
-}
-
-export interface AlignedImageBlok extends Blok {
-	component: 'aligned-image';
-	title?: string;
-	alignment: 'left' | 'right';
-	image: StoryblokAsset;
-	content?: RichTextDocument;
-}
-
-export interface ImageGalleryBlok extends Blok {
-	component: 'image-gallery';
-	images: StoryblokAsset[];
-}
-
-export interface CtaBlok extends Blok {
-	component: 'cta';
-	headline: string;
-	copy?: string;
-}
-
-export interface NewsletterSignupBlok extends Blok {
-	component: 'newsletter-signup';
-	image: StoryblokAsset;
-	headline: string;
-	copy?: string;
-}
-
-export interface BlogPostBlok extends Blok {
-	component: 'blog-post';
-	body?: RichTextDocument;
-	excerpt?: string;
-	/** A Storyblok single-option field — the string 'yes', not a boolean. */
-	show_hero?: string;
-	hero?: StoryblokAsset;
-}
+/**
+ * `items` is an `options` field, so the schema types it as an array of story
+ * UUIDs — which is what the API returns *unresolved*. Every read of this block
+ * goes through `resolve_relations: ['featured-items.items']`, which replaces
+ * those UUIDs with whole story objects, so the delivered shape is overridden
+ * here to match what the component actually receives.
+ */
+export type FeaturedItemsBlok = Omit<BlockContent<typeof featuredItemsBlock, AnyBlock>, 'items'> & {
+	items?: StoryblokStory[] | null;
+};
 
 /** Fields present on every story's `content`, regardless of type. */
 export interface StoryContent {
@@ -97,9 +62,9 @@ export interface StoryContent {
 	component: string;
 	body?: Blok[];
 	/** Fallback social card image. */
-	card?: StoryblokAsset;
+	card?: StoryblokAsset | null;
 	/** Fallback meta description. */
-	description?: string;
+	description?: string | null;
 	[key: string]: unknown;
 }
 
@@ -115,3 +80,12 @@ export interface StoryblokStory {
 }
 
 export type Story = StoryblokStory;
+
+/** Storyblok's richtext document node, for the splitter in `richtext.ts`. */
+export interface RichTextNode {
+	type: string;
+	content?: RichTextNode[];
+	attrs?: Record<string, unknown>;
+	marks?: unknown[];
+	text?: string;
+}

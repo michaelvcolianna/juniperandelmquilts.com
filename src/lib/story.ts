@@ -14,7 +14,8 @@ export function bestImage(content: StoryContent | undefined | null): StoryblokAs
 	if (!content) return undefined;
 
 	const first = content.body?.[0] as BlogPostBlok | undefined;
-	return first?.hero?.filename ? first.hero : content.card;
+	// Optional asset fields arrive as `null`, not `undefined`, from the CDA.
+	return (first?.hero?.filename ? first.hero : content.card) ?? undefined;
 }
 
 /** The story's own excerpt, if its first block carries one. */

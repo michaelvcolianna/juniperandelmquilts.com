@@ -1,5 +1,3 @@
-import type { Blok } from './types';
-
 /**
  * Attributes that let the Storyblok Visual Editor map a rendered element back to
  * the block that produced it, so editors can click an element on the page and
@@ -14,8 +12,10 @@ import type { Blok } from './types';
  * this returns `{}` and no attributes are emitted. There is no flag to set and
  * nothing leaks into production HTML.
  */
-export function editableAttrs(blok: Blok | undefined | null): Record<string, string> {
-	const marker = (blok as { _editable?: unknown } | undefined)?._editable;
+export function editableAttrs(
+	blok: { _editable?: unknown } | undefined | null
+): Record<string, string> {
+	const marker = blok?._editable;
 
 	if (typeof marker !== 'string') return {};
 
