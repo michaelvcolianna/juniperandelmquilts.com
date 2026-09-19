@@ -3,6 +3,7 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import SocialMedia from '$lib/components/SocialMedia.svelte';
 	import { CONTACT_EMAIL } from '$lib/site';
+	import { encodeFormData } from '$lib/forms';
 
 	const FORM_NAME = 'contact';
 
@@ -31,7 +32,7 @@
 				method: 'POST',
 				headers: { 'content-type': 'application/x-www-form-urlencoded' },
 				// Netlify Forms expects url-encoded bodies, not JSON or multipart.
-				body: new URLSearchParams(new FormData(form) as unknown as Record<string, string>)
+				body: encodeFormData(new FormData(form))
 			});
 
 			status = response.ok ? 'success' : 'error';
