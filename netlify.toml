@@ -1,0 +1,9 @@
+[build]
+	command = "npm run build"
+	publish = "build"
+
+[build.environment]
+	NODE_VERSION = "24"
+
+# adapter-netlify v6 emits Netlify Functions v2 and no longer generates a
+# _redirects file, so redirects can live here without being clobbered.

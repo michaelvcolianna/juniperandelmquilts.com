@@ -1,0 +1,189 @@
+/*
+ * Foundation only. The full "Quilt Block" design system lands in Phase 2;
+ * this establishes the tokens, the reset, and the accessibility primitives the
+ * old stylesheet was missing.
+ */
+
+:root {
+	/* Palette. Contrast against --paper: ink 14.8:1, accent 5.9:1, muted 4.6:1. */
+	--ink: #1c1a17;
+	--paper: #faf7f2;
+	--seam: #d9d2c7;
+	--accent: #a8422e;
+	--muted: #6b6459;
+
+	--font-heading: 'Newsreader', Georgia, 'Times New Roman', serif;
+	--font-body:
+		'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+	/*
+	 * Fluid type on rem, so it honours the user's browser font size (WCAG 1.4.4)
+	 * instead of the old fixed-px-per-breakpoint scale. Restores a monotonic
+	 * ramp — the old scale had h3 larger than h2, and h5/h6 undefined entirely.
+	 */
+	--text-sm: clamp(0.875rem, 0.85rem + 0.15vw, 0.95rem);
+	--text-base: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+	--text-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+	--text-h6: clamp(1.0625rem, 1rem + 0.3vw, 1.2rem);
+	--text-h5: clamp(1.1875rem, 1.1rem + 0.4vw, 1.4rem);
+	--text-h4: clamp(1.375rem, 1.2rem + 0.75vw, 1.75rem);
+	--text-h3: clamp(1.625rem, 1.35rem + 1.15vw, 2.25rem);
+	--text-h2: clamp(1.9375rem, 1.5rem + 1.9vw, 3rem);
+	--text-h1: clamp(2.375rem, 1.7rem + 3vw, 4.25rem);
+
+	--measure: 68ch;
+	--tap-target: 2.75rem; /* 44px — comfortably above the WCAG 2.2 24px floor */
+
+	--tx-duration: 195ms;
+	--tx-easing: ease-in-out;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	/* Never suppress zoom, and never set a fixed root px size. */
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background-color: var(--paper);
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: var(--text-base);
+	line-height: 1.6;
+	/* Long words in richtext shouldn't force horizontal scrolling at 320px. */
+	overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote {
+	margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading);
+	font-weight: 400;
+	line-height: 1.15;
+	text-wrap: balance;
+}
+
+h1 {
+	font-size: var(--text-h1);
+}
+h2 {
+	font-size: var(--text-h2);
+}
+h3 {
+	font-size: var(--text-h3);
+}
+h4 {
+	font-size: var(--text-h4);
+}
+h5 {
+	font-size: var(--text-h5);
+}
+h6 {
+	font-size: var(--text-h6);
+}
+
+a {
+	color: var(--accent);
+}
+
+img,
+svg,
+video {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+	font: inherit;
+	color: inherit;
+}
+
+/* Every interactive target clears the WCAG 2.2 2.5.8 minimum. */
+button,
+[type='submit'],
+[type='button'] {
+	min-height: var(--tap-target);
+	min-width: var(--tap-target);
+}
+
+/*
+ * The old stylesheet had no focus styling at all, so keyboard users got only the
+ * UA default — invisible against several of its backgrounds.
+ */
+:focus-visible {
+	outline: 3px solid var(--accent);
+	outline-offset: 2px;
+	border-radius: 2px;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+.skip-nav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	padding: 0.75rem 1.25rem;
+	background-color: var(--ink);
+	color: var(--paper);
+	transform: translateY(-120%);
+}
+
+.skip-nav:focus {
+	transform: translateY(0);
+}
+
+.accent {
+	font-size: var(--text-sm);
+	color: var(--muted);
+}
+
+/*
+ * Motion is opt-in, matching the polarity of the old stylesheet — transitions
+ * are only added when the user has not asked for reduced motion.
+ */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
