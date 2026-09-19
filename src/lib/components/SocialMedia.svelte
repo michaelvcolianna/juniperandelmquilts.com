@@ -17,3 +17,19 @@
 		<span class="sr-only">Instagram</span>
 	</ExternalLink>
 </nav>
+
+<style>
+	nav :global(a) {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: var(--tap-target);
+		min-height: var(--tap-target);
+		color: inherit;
+	}
+
+	nav :global(svg) {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+</style>

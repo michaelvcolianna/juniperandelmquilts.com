@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Blok from '$lib/storyblok/Blok.svelte';
 	import { resolve } from '$app/paths';
+	import Blok from '$lib/storyblok/Blok.svelte';
 	import Seo from '$lib/components/Seo.svelte';
 	import StoryblokImage from '$lib/components/StoryblokImage.svelte';
 	import { bestImage, excerpt, showsHero, storyDate } from '$lib/story';
@@ -23,23 +23,65 @@
 />
 
 <article class="blog-post">
-	<header>
+	<header class="container blog-post__head">
 		<h1>{story.name}</h1>
 
 		{#if story.first_published_at}
-			<time datetime={story.first_published_at}>{storyDate(story.first_published_at)}</time>
+			<time datetime={story.first_published_at} class="accent">
+				{storyDate(story.first_published_at)}
+			</time>
 		{/if}
 	</header>
 
 	{#if showHero && hero}
 		<div class="blog-post__hero">
-			<StoryblokImage image={hero} aspectRatio={550 / 350} sizes="100vw" loading="eager" />
+			<StoryblokImage image={hero} aspectRatio={16 / 9} sizes="100vw" loading="eager" />
 		</div>
 	{/if}
 
-	{#each story.content.body ?? [] as blok (blok._uid)}
-		<Blok {blok} />
-	{/each}
+	<div class="container blog-post__body">
+		{#each story.content.body ?? [] as blok (blok._uid)}
+			<Blok {blok} />
+		{/each}
+	</div>
 
-	<p class="blog-post__back"><a href={resolve('/blog')}>Back to all posts</a></p>
+	<div class="container blog-post__foot">
+		<a href={resolve('/blog')}>&larr; Back to all posts</a>
+	</div>
 </article>
+
+<style>
+	.blog-post__head {
+		padding-block: clamp(2.5rem, 7vw, 4.5rem) clamp(1.5rem, 4vw, 2.5rem);
+		max-width: calc(var(--prose-width) + var(--gutter) * 2);
+	}
+
+	.blog-post__head time {
+		display: block;
+		margin-block-start: 0.75rem;
+	}
+
+	.blog-post__hero :global(img) {
+		width: 100%;
+		object-fit: cover;
+	}
+
+	/*
+	 * Post bodies are a single measured column rather than the wide page grid.
+	 * The old build set this to 80vw on small screens, which produced very long
+	 * lines on tablets.
+	 */
+	.blog-post__body {
+		max-width: calc(var(--prose-width) + var(--gutter) * 2);
+		padding-block: clamp(2rem, 6vw, 3.5rem);
+	}
+
+	.blog-post__foot {
+		max-width: calc(var(--prose-width) + var(--gutter) * 2);
+		padding-block-end: var(--block-space);
+	}
+
+	.blog-post__foot a {
+		font-weight: 500;
+	}
+</style>

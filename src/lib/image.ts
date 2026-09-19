@@ -104,3 +104,58 @@ export function intrinsicSize(
 
 	return { width: Number(match[1]), height: Number(match[2]) };
 }
+
+/**
+ * The largest width worth requesting. Beyond this the file size grows far
+ * faster than the perceived quality on any realistic display.
+ */
+export const MAX_WIDTH = 1600;
+
+/** A sensible width for the `src` fallback, when srcset is unavailable. */
+export const FALLBACK_WIDTH = 1200;
+
+/**
+ * Clamp a requested width so the image service never has to invent pixels.
+ *
+ * Storyblok will happily serve `/m/2500x3125/` from a 2500x2449 source by
+ * upscaling it, which costs bandwidth and softens the result. This caps the
+ * width at MAX_WIDTH, at the source width, and — when a crop ratio is in play —
+ * at whatever width keeps the derived height inside the source too.
+ */
+export function usableWidth(
+	filename: string | undefined | null,
+	requested: number,
+	aspectRatio?: number
+): number {
+	const intrinsic = intrinsicSize(filename);
+	let width = Math.min(requested, MAX_WIDTH);
+
+	if (!intrinsic) return Math.round(width);
+
+	width = Math.min(width, intrinsic.width);
+
+	if (aspectRatio) {
+		const height = width / aspectRatio;
+		if (height > intrinsic.height) {
+			width = intrinsic.height * aspectRatio;
+		}
+	}
+
+	return Math.round(width);
+}
+
+/**
+ * The srcset widths actually worth emitting for an image: the defaults, clamped
+ * and de-duplicated, with anything above the usable maximum dropped.
+ */
+export function candidateWidths(
+	filename: string | undefined | null,
+	aspectRatio?: number,
+	widths: number[] = DEFAULT_WIDTHS
+): number[] {
+	const max = usableWidth(filename, MAX_WIDTH, aspectRatio);
+	const usable = widths.filter((width) => width < max);
+
+	// Always include the maximum so large viewports get a sharp candidate.
+	return [...new Set([...usable, max])].sort((a, b) => a - b);
+}

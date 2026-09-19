@@ -86,3 +86,88 @@
 		{/if}
 	</nav>
 {/if}
+
+<style>
+	.blog-list {
+		display: grid;
+		gap: clamp(2rem, 5vw, 3rem);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.blog-list article {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.blog-list article :global(img) {
+		width: 100%;
+		border: 1px solid var(--seam);
+	}
+
+	.blog-list h2 {
+		font-size: var(--text-h3);
+		margin: 0;
+	}
+
+	.blog-list h2 a {
+		color: var(--ink);
+		text-decoration: none;
+	}
+
+	.blog-list h2 a:hover {
+		color: var(--accent);
+		text-decoration: underline;
+	}
+
+	.blog-list time {
+		font-size: var(--text-sm);
+		color: var(--muted);
+		letter-spacing: 0.02em;
+	}
+
+	.blog-list__more {
+		justify-self: start;
+		font-weight: 500;
+	}
+
+	/*
+	 * Pagination. The Nuxt version never rendered — its page count evaluated to
+	 * NaN — so this is new rather than ported. Disabled directions stay in the
+	 * flow as plain text so the control does not shift position between pages.
+	 */
+	.pagination {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-block-start: clamp(2.5rem, 6vw, 4rem);
+		padding-block-start: 1.5rem;
+		border-top: 1px solid var(--seam);
+	}
+
+	.pagination a,
+	.pagination span {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--tap-target);
+		padding-inline: 0.25rem;
+		font-weight: 500;
+	}
+
+	.pagination span {
+		color: var(--muted);
+	}
+
+	.pagination p {
+		font-size: var(--text-sm);
+		color: var(--muted);
+	}
+
+	@media (min-width: 48em) {
+		.blog-list {
+			grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+		}
+	}
+</style>

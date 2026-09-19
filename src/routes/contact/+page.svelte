@@ -50,11 +50,11 @@
 	description="Ways to get in touch with Juniper & Elm Quilts, including a message form."
 />
 
-<section class="contact">
+<section class="block container contact">
 	<div class="contact__intro">
 		<h1>Contact us.</h1>
 
-		<p><a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
+		<p><a href="mailto:{CONTACT_EMAIL}" class="contact__email">{CONTACT_EMAIL}</a></p>
 
 		<SocialMedia />
 	</div>
@@ -148,6 +148,55 @@
 </section>
 
 <style>
+	.contact {
+		display: grid;
+		gap: clamp(2rem, 6vw, 3.5rem);
+		align-items: start;
+	}
+
+	.contact__intro {
+		display: grid;
+		gap: var(--stack);
+		justify-items: start;
+	}
+
+	form {
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	fieldset {
+		display: grid;
+		gap: 1rem;
+	}
+
+	/*
+	 * A standalone link, so WCAG 2.2 2.5.8's inline exception does not apply and
+	 * it needs a real target height. (The "MVC" credit in the footer sits inside
+	 * a sentence and is exempt.)
+	 */
+	.contact__email {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--tap-target);
+	}
+
+	.contact__required {
+		font-size: var(--text-sm);
+		color: var(--muted);
+	}
+
+	.contact button {
+		justify-self: start;
+	}
+
+	.contact__result {
+		grid-column: 1 / -1;
+		padding: 1rem 1.25rem;
+		border-left: 3px solid var(--accent);
+		background-color: var(--paper-sunk);
+	}
+
 	.contact__hp {
 		position: absolute;
 		width: 1px;
@@ -157,5 +206,20 @@
 		overflow: hidden;
 		clip-path: inset(50%);
 		white-space: nowrap;
+	}
+
+	@media (min-width: 48em) {
+		.contact {
+			grid-template-columns: 4fr 7fr;
+			column-gap: var(--gutter);
+		}
+
+		fieldset {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		fieldset legend {
+			grid-column: 1 / -1;
+		}
 	}
 </style>
