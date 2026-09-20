@@ -1,0 +1,15 @@
+[build]
+	command = "npm run build"
+	publish = "build"
+
+[build.environment]
+	NODE_VERSION = "24"
+
+# adapter-netlify v6 emits Netlify Functions v2 and no longer generates a
+# _redirects file, so redirects can live here without being clobbered.
+
+# Netlify sets CONTEXT to "production", "branch-deploy" or "deploy-preview".
+# scripts/netlify-noindex.mjs reads it after the build and appends an
+# X-Robots-Tag to everything except production — Netlify only noindexes
+# superseded branch deploys on its own, so a live staging branch would
+# otherwise be indexable.

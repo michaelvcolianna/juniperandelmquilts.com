@@ -1,0 +1,72 @@
+import { defineConfig } from 'vitest/config';
+import adapter from '@sveltejs/adapter-netlify';
+import { sveltekit } from '@sveltejs/kit/vite';
+
+// eslint-plugin-svelte 3.x removed its a11y rules — the Svelte compiler owns them
+// now. `warningFilter` is the only hook we get, so use it to turn a11y warnings
+// into hard failures. Production builds only: crashing the dev server mid-edit
+// makes iterating miserable, and the warnings are still printed there.
+const failOnA11yWarnings =
+	(isProduction: boolean) =>
+	(warning: {
+		code: string;
+		message: string;
+		filename?: string;
+		start?: { line: number; column: number };
+	}) => {
+		if (isProduction && warning.code.startsWith('a11y_')) {
+			const where = warning.filename
+				? `${warning.filename}:${warning.start?.line ?? '?'}:${warning.start?.column ?? '?'}`
+				: 'unknown location';
+			throw new Error(`Accessibility error (${warning.code}) at ${where}\n  ${warning.message}`);
+		}
+		return true;
+	};
+
+export default defineConfig(({ mode }) => ({
+	plugins: [
+		sveltekit({
+			compilerOptions: {
+				// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
+				runes: ({ filename }) =>
+					filename.split(/[/\\]/).includes('node_modules') ? undefined : true,
+				warningFilter: failOnA11yWarnings(mode === 'production')
+			},
+			adapter: adapter(),
+			// The site is prerendered, so most routes emit static HTML. The handful of
+			// dynamic routes (newsletter, checkout, preview) opt out individually.
+			prerender: {
+				// A broken link should fail the build rather than ship a 404.
+				handleHttpError: 'fail',
+				handleMissingId: 'fail',
+				// /blog/page/[page] starts at page 2, so with a single page of posts
+				// its entry generator legitimately yields nothing and the route is
+				// never reached. That one route is expected; anything else unseen is
+				// a real problem and still fails the build.
+				handleUnseenRoutes: ({ routes }) => {
+					const unexpected = routes.filter((route) => route !== '/blog/page/[page]');
+
+					if (unexpected.length > 0) {
+						throw new Error(
+							`Routes marked prerenderable but never reached: ${unexpected.join(', ')}`
+						);
+					}
+				}
+			}
+		})
+	],
+	test: {
+		expect: { requireAssertions: true },
+		projects: [
+			{
+				extends: './vite.config.ts',
+				test: {
+					name: 'server',
+					environment: 'node',
+					include: ['src/**/*.{test,spec}.{js,ts}'],
+					exclude: ['src/**/*.svelte.{test,spec}.{js,ts}']
+				}
+			}
+		]
+	}
+}));

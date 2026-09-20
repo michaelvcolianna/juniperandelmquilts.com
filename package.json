@@ -1,20 +1,53 @@
 {
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "devDependencies": {
-    "@nuxt/image-edge": "^1.0.0-27840416.dc1ed65",
-    "nuxt": "^3.0.0"
-  },
-  "dependencies": {
-    "@nuxtjs/robots": "^3.0.0",
-    "@storyblok/nuxt": "^5.0.0",
-    "date-fns": "^2.29.3",
-    "sass": "^1.57.1"
-  }
+	"name": "juniperandelmquilts.com",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"engines": {
+		"node": ">=24"
+	},
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build && node scripts/netlify-noindex.mjs",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"test:unit": "vitest",
+		"test": "npm run test:unit -- --run",
+		"schema:validate": "storyblok schema validate src/lib/storyblok/schema.ts",
+		"schema:diff": "storyblok schema diff --from 159199 --to src/lib/storyblok/schema.ts",
+		"schema:push:dry": "storyblok schema push src/lib/storyblok/schema.ts --space 159199 --dry-run",
+		"schema:push": "storyblok schema push src/lib/storyblok/schema.ts --space 159199",
+		"schema:rollback": "storyblok schema rollback"
+	},
+	"dependencies": {
+		"@storyblok/richtext": "^5.3.1",
+		"@storyblok/svelte": "^7.3.2",
+		"date-fns": "^4.4.0",
+		"storyblok-js-client": "^7.7.6"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@storyblok/schema": "0.4.2",
+		"@sveltejs/adapter-netlify": "^6.0.4",
+		"@sveltejs/kit": "^2.70.3",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@types/node": "^24",
+		"eslint": "^10.4.1",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.19.0",
+		"globals": "^17.6.0",
+		"prettier": "^3.8.3",
+		"prettier-plugin-svelte": "^4.1.0",
+		"storyblok": "^4.23.0",
+		"svelte": "^5.57.1",
+		"svelte-check": "^4.6.0",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.60.1",
+		"vite": "^8.0.16",
+		"vitest": "^4.1.8"
+	}
 }

@@ -1,0 +1,516 @@
+/*
+ * "Quilt Block" — the design system.
+ *
+ * The organising idea is patchwork: the page is a stack of full-width blocks
+ * that butt against each other, separated by thin "seam" rules, and each block
+ * lays its contents out on a shared column grid. Quilts are shown sharp and
+ * uncropped; the old build blurred and dimmed every hero image, which hid the
+ * one thing the site exists to show.
+ *
+ * Palette values are mirrored in src/lib/palette.ts, which asserts their
+ * contrast ratios in the test suite.
+ */
+
+:root {
+	/* Palette */
+	--ink: #1c1a17;
+	--paper: #faf7f2;
+	--seam: #cec5b6;
+	--accent: #a8422e;
+	--muted: #6b6459;
+
+	/* A slightly recessed surface for alternating blocks. */
+	--paper-sunk: #f2ede4;
+	/* Accent, darkened for hover. Still AA on paper. */
+	--accent-deep: #8a3524;
+
+	--font-heading: 'Newsreader', Georgia, 'Times New Roman', serif;
+	--font-body:
+		'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+	/*
+	 * Fluid type on rem, so it honours the user's browser font size (WCAG 1.4.4)
+	 * instead of the old fixed-px-per-breakpoint scale. Restores a monotonic
+	 * ramp — the old scale had h3 larger than h2, and h5/h6 undefined entirely.
+	 */
+	--text-sm: clamp(0.875rem, 0.85rem + 0.15vw, 0.95rem);
+	--text-base: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+	--text-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+	--text-h6: clamp(1.0625rem, 1rem + 0.3vw, 1.2rem);
+	--text-h5: clamp(1.1875rem, 1.1rem + 0.4vw, 1.4rem);
+	--text-h4: clamp(1.375rem, 1.2rem + 0.75vw, 1.75rem);
+	--text-h3: clamp(1.625rem, 1.35rem + 1.15vw, 2.25rem);
+	--text-h2: clamp(1.9375rem, 1.5rem + 1.9vw, 3rem);
+	--text-h1: clamp(2.375rem, 1.7rem + 3vw, 4.25rem);
+
+	/* Rhythm */
+	--gutter: clamp(1rem, 5vw, 3.5rem);
+	--block-space: clamp(3rem, 9vw, 7rem);
+	--stack: clamp(1rem, 2.5vw, 1.75rem);
+	--max-width: 78rem;
+	--prose-width: 38rem;
+
+	--measure: 68ch;
+	--tap-target: 2.75rem; /* 44px — comfortably above the WCAG 2.2 24px floor */
+
+	--tx-duration: 195ms;
+	--tx-easing: ease-in-out;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	/* Never suppress zoom, and never set a fixed root px size. */
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	/*
+	 * A short page — the contact confirmation, a 404 — would otherwise end above
+	 * the fold and leave the body's paper showing under the dark footer. Column
+	 * layout plus a growing <main> keeps the footer on the bottom edge.
+	 *
+	 * app.html wraps the app in `display: contents`, so header/main/footer are
+	 * the real flex items here.
+	 */
+	min-height: 100svh;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--paper);
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: var(--text-base);
+	line-height: 1.6;
+	/* Long words in richtext shouldn't force horizontal scrolling at 320px. */
+	overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+fieldset {
+	margin: 0;
+}
+
+fieldset {
+	padding: 0;
+	border: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading);
+	font-weight: 400;
+	line-height: 1.12;
+	letter-spacing: -0.01em;
+	text-wrap: balance;
+}
+
+h1 {
+	font-size: var(--text-h1);
+}
+h2 {
+	font-size: var(--text-h2);
+}
+h3 {
+	font-size: var(--text-h3);
+}
+h4 {
+	font-size: var(--text-h4);
+}
+h5 {
+	font-size: var(--text-h5);
+}
+h6 {
+	font-size: var(--text-h6);
+}
+
+a {
+	color: var(--accent);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.18em;
+}
+
+a:hover {
+	color: var(--accent-deep);
+}
+
+img,
+svg,
+video {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+	font: inherit;
+	color: inherit;
+}
+
+/* Every interactive target clears the WCAG 2.2 2.5.8 minimum. */
+button,
+[type='submit'],
+[type='button'] {
+	min-height: var(--tap-target);
+	min-width: var(--tap-target);
+}
+
+/*
+ * The old stylesheet had no focus styling at all, so keyboard users got only the
+ * UA default — invisible against several of its backgrounds.
+ */
+:focus-visible {
+	outline: 3px solid var(--accent);
+	outline-offset: 2px;
+	border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Layout primitives
+ * ------------------------------------------------------------------------ */
+
+/*
+ * The column grid. Four columns on small screens, twelve from 768px, with the
+ * gutter doubling as the page's side margin. Blocks place their children on
+ * this grid rather than nesting their own containers.
+ */
+.grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: var(--stack) var(--gutter);
+}
+
+@media (min-width: 48em) {
+	.grid {
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+	}
+}
+
+.container {
+	width: 100%;
+	max-width: var(--max-width);
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+
+/*
+ * A patchwork block. Blocks stack directly against one another and are divided
+ * by a single seam rule, so the page reads as pieced panels rather than
+ * floating cards.
+ */
+.block {
+	padding-block: var(--block-space);
+	border-top: 1px solid var(--seam);
+}
+
+.block:first-child {
+	border-top: 0;
+}
+
+/* A block whose image runs edge to edge; no side gutter, no vertical padding. */
+.block--bleed {
+	padding-block: 0;
+}
+
+.block--sunk {
+	background-color: var(--paper-sunk);
+}
+
+.block--ink {
+	background-color: var(--ink);
+	color: var(--paper);
+	/*
+	 * Keeps the seam visible where a light block meets a dark one. Drawing it in
+	 * --ink here hid the boundary entirely; consecutive dark blocks still
+	 * collapse theirs below.
+	 */
+	border-top-color: var(--seam);
+}
+
+.block--ink a {
+	color: var(--paper);
+}
+
+.block--ink a:hover {
+	color: var(--seam);
+}
+
+.block--ink :focus-visible {
+	outline-color: var(--paper);
+}
+
+/*
+ * Consecutive inverted blocks read as one dark panel rather than two, so the
+ * shared seam and the doubled vertical padding between them both collapse.
+ */
+.block--ink + .block--ink {
+	padding-block-start: 0;
+	border-top: 0;
+}
+
+/* A constrained column for running text. */
+.prose-width {
+	max-width: var(--prose-width);
+}
+
+.stack > * + * {
+	margin-block-start: var(--stack);
+}
+
+.accent {
+	font-size: var(--text-sm);
+	color: var(--muted);
+	letter-spacing: 0.02em;
+}
+
+.block--ink .accent {
+	color: var(--seam);
+}
+
+/* Small-caps eyebrow used above block headings. */
+.eyebrow {
+	font-family: var(--font-body);
+	font-size: var(--text-sm);
+	font-weight: 500;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+/* ---------------------------------------------------------------------------
+ * Controls
+ * ------------------------------------------------------------------------ */
+
+.button,
+button[type='submit'] {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 0.75rem 1.75rem;
+	border: 1px solid var(--accent);
+	border-radius: 2px;
+	background-color: var(--accent);
+	color: var(--paper);
+	font-size: var(--text-base);
+	font-weight: 500;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.button:hover,
+button[type='submit']:hover {
+	background-color: var(--accent-deep);
+	border-color: var(--accent-deep);
+	color: var(--paper);
+}
+
+.button[disabled],
+button[type='submit'][disabled] {
+	background-color: var(--muted);
+	border-color: var(--muted);
+	cursor: not-allowed;
+}
+
+input[type='text'],
+input[type='email'],
+textarea {
+	width: 100%;
+	padding: 0.7rem 0.85rem;
+	border: 1px solid var(--seam);
+	border-radius: 2px;
+	background-color: var(--paper);
+	color: var(--ink);
+	/* 16px minimum stops iOS Safari zooming the viewport on focus. */
+	font-size: max(1rem, var(--text-base));
+}
+
+input[type='text']:focus,
+input[type='email']:focus,
+textarea:focus {
+	border-color: var(--accent);
+}
+
+textarea {
+	min-height: 10rem;
+	resize: vertical;
+}
+
+label {
+	display: block;
+	font-size: var(--text-sm);
+	font-weight: 500;
+	margin-block-end: 0.35rem;
+}
+
+legend {
+	font-family: var(--font-heading);
+	font-size: var(--text-h5);
+	margin-block-end: 0.5rem;
+}
+
+/* ---------------------------------------------------------------------------
+ * Rich text
+ *
+ * Storyblok richtext is injected with {@html}, so these cannot be scoped to a
+ * component — they live here and target the wrapper RichText.svelte emits.
+ * ------------------------------------------------------------------------ */
+
+.rich-text {
+	max-width: var(--measure);
+}
+
+.rich-text + .rich-text {
+	margin-block-start: 1em;
+}
+
+.rich-text p {
+	margin: 0;
+}
+
+.rich-text h2,
+.rich-text h3,
+.rich-text h4 {
+	margin-block: 1.5em 0.4em;
+}
+
+.rich-text ul,
+.rich-text ol {
+	margin-block: 0;
+	padding-inline-start: 1.5em;
+}
+
+.rich-text li + li {
+	margin-block-start: 0.4em;
+}
+
+.rich-text img {
+	width: 100%;
+	height: auto;
+	/* Matches the framing on gallery, card and aligned-image pictures. */
+	border: 1px solid var(--seam);
+}
+
+/*
+ * Storyblok puts a run of images inside a single paragraph with no separator
+ * between them, and `img { display: block }` then stacks them flush against one
+ * another. Space a run the way consecutive paragraphs are spaced, so a gallery
+ * reads as separate pictures rather than one tall strip.
+ */
+.rich-text img + img {
+	margin-block-start: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.rich-text blockquote {
+	margin-block: 1.5em;
+	padding-inline-start: 1.25rem;
+	border-inline-start: 3px solid var(--accent);
+	font-family: var(--font-heading);
+	font-size: var(--text-lg);
+	font-style: italic;
+}
+
+.rich-text hr {
+	height: 1px;
+	margin-block: 2.5em;
+	border: 0;
+	background-color: var(--seam);
+}
+
+.rich-text code {
+	padding: 0.15em 0.35em;
+	border-radius: 2px;
+	background-color: var(--paper-sunk);
+	font-size: 0.9em;
+}
+
+/* ---------------------------------------------------------------------------
+ * Accessibility helpers
+ * ------------------------------------------------------------------------ */
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+.skip-nav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	padding: 0.75rem 1.25rem;
+	background-color: var(--ink);
+	color: var(--paper);
+	font-weight: 500;
+	text-decoration: none;
+	transform: translateY(-120%);
+}
+
+.skip-nav:focus {
+	color: var(--paper);
+	transform: translateY(0);
+}
+
+main {
+	/* Takes up the slack so the footer is pushed to the bottom on short pages. */
+	flex: 1 0 auto;
+}
+
+/* The <main> takes focus on skip, but should never show a ring for it. */
+main:focus {
+	outline: none;
+}
+
+/*
+ * Motion is opt-in, matching the polarity of the old stylesheet — transitions
+ * are only added when the user has not asked for reduced motion.
+ */
+@media (prefers-reduced-motion: no-preference) {
+	a,
+	button,
+	.button,
+	input,
+	textarea {
+		transition:
+			background-color var(--tx-duration) var(--tx-easing),
+			border-color var(--tx-duration) var(--tx-easing),
+			color var(--tx-duration) var(--tx-easing);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}

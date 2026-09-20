@@ -1,9 +1,36 @@
 node_modules
 *.log*
+
+# SvelteKit output
+/.svelte-kit
+/build
+.netlify
+.vercel
+.wrangler
+.output
+
+# Nuxt leftovers (removed at cutover)
 .nuxt
 .nuxtignore
 .nitro
 .cache
-.output
-.env
 dist
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Local dev TLS certs (generate with mkcert; never commit)
+*.pem
+
+# Storyblok CLI reports and rollback changesets
+.storyblok/
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
