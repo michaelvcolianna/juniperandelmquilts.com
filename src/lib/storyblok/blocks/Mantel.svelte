@@ -42,6 +42,15 @@
 </section>
 
 <style>
+	/*
+	 * The seam sits on the image, not on the text below it: .mantel__text is a
+	 * .container, so a border there would stop at the content width instead of
+	 * running edge to edge like every other seam on the page.
+	 */
+	.mantel__image {
+		border-bottom: 1px solid var(--seam);
+	}
+
 	.mantel__image :global(img) {
 		width: 100%;
 		aspect-ratio: 4 / 3;
@@ -62,6 +71,15 @@
 	}
 
 	@media (min-width: 48em) {
+		/*
+	 * The seam sits on the image, not on the text below it: .mantel__text is a
+	 * .container, so a border there would stop at the content width instead of
+	 * running edge to edge like every other seam on the page.
+	 */
+		.mantel__image {
+			border-bottom: 1px solid var(--seam);
+		}
+
 		.mantel__image :global(img) {
 			aspect-ratio: 21 / 9;
 		}

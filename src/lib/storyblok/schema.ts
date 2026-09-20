@@ -96,14 +96,21 @@ export const alignedImageBlock = defineBlock({
 	name: 'aligned-image',
 	fields: [
 		defineField('title', { type: 'text' }),
-		// Inferred: the markup only ever compares against 'left' and 'right'.
+		/*
+		 * Controls whether the image sits above or below the text.
+		 *
+		 * The stored values are still `right` and `left` from when this block
+		 * floated its image to one side. Only the labels changed, so the existing
+		 * published blocks — all of them set to `right` — keep rendering exactly
+		 * as before without a content migration. `right` reads as top.
+		 */
 		defineField('alignment', {
 			type: 'option',
 			options: [
-				{ name: 'Image left', value: 'left' },
-				{ name: 'Image right', value: 'right' }
+				{ name: 'Image top', value: 'right' },
+				{ name: 'Image bottom', value: 'left' }
 			],
-			default_value: 'left'
+			default_value: 'right'
 		}),
 		defineField('image', { type: 'asset', filetypes: ['images'], required: true }),
 		defineField('content', { type: 'richtext' })

@@ -21,6 +21,15 @@ export const SITE_IMAGE = 'https://a.storyblok.com/f/159199/1200x627/0b448f6439/
 
 export const CONTACT_EMAIL = 'info@juniperandelmquilts.com';
 
+/**
+ * Where "Shop" points until on-site Square checkout exists.
+ *
+ * When the Square catalog lands this becomes an internal `/shop` route: change
+ * the single entry in `Navigation.svelte` from `external` to `internal` and
+ * delete this constant.
+ */
+export const ETSY_SHOP_URL = 'https://www.etsy.com/shop/JuniperandElmQuilts';
+
 /** Build an absolute URL for a site-relative path. */
 export function absoluteUrl(pathname: string): string {
 	return new URL(pathname, SITE_URL).href;

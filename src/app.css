@@ -70,6 +70,17 @@ html {
 
 body {
 	margin: 0;
+	/*
+	 * A short page — the contact confirmation, a 404 — would otherwise end above
+	 * the fold and leave the body's paper showing under the dark footer. Column
+	 * layout plus a growing <main> keeps the footer on the bottom edge.
+	 *
+	 * app.html wraps the app in `display: contents`, so header/main/footer are
+	 * the real flex items here.
+	 */
+	min-height: 100svh;
+	display: flex;
+	flex-direction: column;
 	background-color: var(--paper);
 	color: var(--ink);
 	font-family: var(--font-body);
@@ -227,7 +238,12 @@ button,
 .block--ink {
 	background-color: var(--ink);
 	color: var(--paper);
-	border-top-color: var(--ink);
+	/*
+	 * Keeps the seam visible where a light block meets a dark one. Drawing it in
+	 * --ink here hid the boundary entirely; consecutive dark blocks still
+	 * collapse theirs below.
+	 */
+	border-top-color: var(--seam);
 }
 
 .block--ink a {
@@ -390,6 +406,18 @@ legend {
 .rich-text img {
 	width: 100%;
 	height: auto;
+	/* Matches the framing on gallery, card and aligned-image pictures. */
+	border: 1px solid var(--seam);
+}
+
+/*
+ * Storyblok puts a run of images inside a single paragraph with no separator
+ * between them, and `img { display: block }` then stacks them flush against one
+ * another. Space a run the way consecutive paragraphs are spaced, so a gallery
+ * reads as separate pictures rather than one tall strip.
+ */
+.rich-text img + img {
+	margin-block-start: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .rich-text blockquote {
@@ -447,6 +475,11 @@ legend {
 .skip-nav:focus {
 	color: var(--paper);
 	transform: translateY(0);
+}
+
+main {
+	/* Takes up the slack so the footer is pushed to the bottom on short pages. */
+	flex: 1 0 auto;
 }
 
 /* The <main> takes focus on skip, but should never show a ring for it. */

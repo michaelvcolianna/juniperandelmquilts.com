@@ -12,6 +12,19 @@
 	const hasCopy = $derived((blok.copy?.content?.length ?? 0) > 1);
 	const items = $derived(blok.items ?? []);
 	const images = $derived(blok.images ?? []);
+
+	/*
+	 * This one component serves two jobs on the home page: a featured product
+	 * (headline, copy and a picture of the quilt) and a listing of featured blog
+	 * posts (headline above a grid of story cards).
+	 *
+	 * They want different layouts, and the difference is inferable from the
+	 * content rather than needing a new CMS field: a block with pictures but no
+	 * story relations is the product. That reads as two columns from tablet up;
+	 * the listing keeps its headline above a full-width grid, which is what a row
+	 * of cards needs.
+	 */
+	const isProduct = $derived(images.length > 0 && items.length === 0);
 </script>
 
 <!--
@@ -20,8 +33,13 @@
 	CMS-supplied full_slug for any other story type.
 -->
 
-<section {...editableAttrs(blok)} id={blok._uid} class="block block--sunk featured-items">
-	<div class="container">
+<section
+	{...editableAttrs(blok)}
+	id={blok._uid}
+	class="block block--sunk featured-items"
+	class:featured-items--product={isProduct}
+>
+	<div class="container featured-items__inner">
 		<div class="featured-items__head">
 			<h2>{blok.headline}</h2>
 
@@ -76,7 +94,13 @@
 			<ul class="featured-items__images">
 				{#each images as image (image.filename)}
 					<li>
-						<StoryblokImage {image} aspectRatio={1} sizes="(min-width: 48em) 38rem, 100vw" />
+						<StoryblokImage
+							{image}
+							aspectRatio={1}
+							sizes={isProduct
+								? '(min-width: 48em) min(46vw, 32rem), 100vw'
+								: '(min-width: 48em) 38rem, 100vw'}
+						/>
 					</li>
 				{/each}
 			</ul>
@@ -122,6 +146,10 @@
 		border: 1px solid var(--seam);
 	}
 
+	.featured-items__images :global(img) {
+		border: 1px solid var(--seam);
+	}
+
 	.card__title {
 		margin-block-start: 1rem;
 		font-size: var(--text-h4);
@@ -147,10 +175,34 @@
 		color: var(--muted);
 	}
 
+	/* -----------------------------------------------------------------------
+	 * Featured product
+	 * -------------------------------------------------------------------- */
+
 	@media (min-width: 48em) {
+		/* Cards sit side by side from tablet up. */
 		.featured-items__grid,
 		.featured-items__images {
 			grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+		}
+
+		/* Text in the first column, the quilt in the second. */
+		.featured-items--product .featured-items__inner {
+			display: grid;
+			grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+			column-gap: var(--gutter);
+			align-items: center;
+		}
+
+		.featured-items--product .featured-items__head {
+			margin-block-end: 0;
+			/* Top-aligned against the quilt rather than centred beside it. */
+			align-self: start;
+		}
+
+		.featured-items--product .featured-items__images {
+			margin-block-start: 0;
+			max-width: none;
 		}
 	}
 </style>

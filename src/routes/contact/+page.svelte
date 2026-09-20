@@ -11,6 +11,19 @@
 
 	let status = $state<Status>('idle');
 	let resultEl = $state<HTMLElement | null>(null);
+	let panelEl = $state<HTMLElement | null>(null);
+
+	/*
+	 * The confirmation is much shorter than the form it replaces, so swapping
+	 * them outright collapses the page by several hundred pixels and everything
+	 * below snaps upward.
+	 *
+	 * Instead the panel holds its pre-submit height for a frame, then eases down
+	 * to its natural size. Nothing jumps, and no permanent gap is left behind.
+	 */
+	let reservedHeight = $state<number | null>(null);
+
+	const heightStyle = $derived(reservedHeight === null ? undefined : `${reservedHeight}px`);
 
 	/**
 	 * Netlify discovers forms by parsing static HTML at deploy time, and its form
@@ -35,14 +48,25 @@
 				body: encodeFormData(new FormData(form))
 			});
 
-			status = response.ok ? 'success' : 'error';
-			if (response.ok) form.reset();
+			if (response.ok) {
+				reservedHeight = panelEl?.offsetHeight ?? null;
+				status = 'success';
+				form.reset();
+			} else {
+				status = 'error';
+			}
 		} catch {
 			status = 'error';
 		}
 
 		await tick();
 		resultEl?.focus();
+
+		// Two frames: one for the browser to paint at the reserved height, the
+		// next to start the transition down to the natural height.
+		if (reservedHeight !== null) {
+			requestAnimationFrame(() => requestAnimationFrame(() => (reservedHeight = 0)));
+		}
 	}
 </script>
 
@@ -60,92 +84,97 @@
 		<SocialMedia />
 	</div>
 
-	<form
-		name={FORM_NAME}
-		method="POST"
-		action={ACTION}
-		data-netlify="true"
-		{...{ 'netlify-honeypot': 'bot-field' }}
-		onsubmit={handleSubmit}
-	>
-		<input type="hidden" name="form-name" value={FORM_NAME} />
+	<div class="contact__panel" bind:this={panelEl} style:min-height={heightStyle}>
+		{#if status !== 'success'}
+			<form
+				name={FORM_NAME}
+				method="POST"
+				action={ACTION}
+				data-netlify="true"
+				{...{ 'netlify-honeypot': 'bot-field' }}
+				onsubmit={handleSubmit}
+			>
+				<input type="hidden" name="form-name" value={FORM_NAME} />
 
-		<!-- Honeypot: hidden from people, tempting to bots. -->
-		<p class="contact__hp" aria-hidden="true">
-			<label for="bot-field">Leave this field empty</label>
-			<input id="bot-field" name="bot-field" type="text" tabindex="-1" autocomplete="off" />
-		</p>
+				<!-- Honeypot: hidden from people, tempting to bots. -->
+				<p class="contact__hp" aria-hidden="true">
+					<label for="bot-field">Leave this field empty</label>
+					<input id="bot-field" name="bot-field" type="text" tabindex="-1" autocomplete="off" />
+				</p>
 
-		<fieldset>
-			<legend>Name <span aria-hidden="true">*</span></legend>
+				<fieldset>
+					<legend>Name <span aria-hidden="true">*</span></legend>
 
-			<div class="contact__field">
-				<label for="first-name">First name</label>
-				<input
-					id="first-name"
-					name="firstName"
-					type="text"
-					required
-					autocomplete="given-name"
-					autocorrect="off"
-					spellcheck="false"
-				/>
-			</div>
+					<div class="contact__field">
+						<label for="first-name">First name</label>
+						<input
+							id="first-name"
+							name="firstName"
+							type="text"
+							required
+							autocomplete="given-name"
+							autocorrect="off"
+							spellcheck="false"
+						/>
+					</div>
 
-			<div class="contact__field">
-				<label for="last-name">Last name</label>
-				<input
-					id="last-name"
-					name="lastName"
-					type="text"
-					required
-					autocomplete="family-name"
-					autocorrect="off"
-					spellcheck="false"
-				/>
-			</div>
-		</fieldset>
+					<div class="contact__field">
+						<label for="last-name">Last name</label>
+						<input
+							id="last-name"
+							name="lastName"
+							type="text"
+							required
+							autocomplete="family-name"
+							autocorrect="off"
+							spellcheck="false"
+						/>
+					</div>
+				</fieldset>
 
-		<div class="contact__field">
-			<label for="email">Email <span aria-hidden="true">*</span></label>
-			<input
-				id="email"
-				name="email"
-				type="email"
-				required
-				autocomplete="email"
-				autocapitalize="off"
-				autocorrect="off"
-				spellcheck="false"
-			/>
-		</div>
+				<div class="contact__field">
+					<label for="email">Email <span aria-hidden="true">*</span></label>
+					<input
+						id="email"
+						name="email"
+						type="email"
+						required
+						autocomplete="email"
+						autocapitalize="off"
+						autocorrect="off"
+						spellcheck="false"
+					/>
+				</div>
 
-		<div class="contact__field">
-			<label for="message">Message <span aria-hidden="true">*</span></label>
-			<textarea id="message" name="message" rows="8" required></textarea>
-		</div>
+				<div class="contact__field">
+					<label for="message">Message <span aria-hidden="true">*</span></label>
+					<textarea id="message" name="message" rows="8" required></textarea>
+				</div>
 
-		<p class="contact__required">
-			Fields marked <span aria-hidden="true">*</span><span class="sr-only">with an asterisk</span> are
-			required.
-		</p>
+				<p class="contact__required">
+					Fields marked <span aria-hidden="true">*</span><span class="sr-only"
+						>with an asterisk</span
+					> are required.
+				</p>
 
-		<button type="submit" disabled={status === 'submitting'}>
-			{status === 'submitting' ? 'Sending…' : 'Send'}
-		</button>
-	</form>
+				<button type="submit" disabled={status === 'submitting'}>
+					{status === 'submitting' ? 'Sending…' : 'Send'}
+				</button>
+			</form>
+		{/if}
 
-	{#if status === 'success' || status === 'error'}
-		<p bind:this={resultEl} tabindex="-1" role="status" class="contact__result">
-			{#if status === 'success'}
-				Thank you for your message. If it was an inquiry, we'll get back to you within 1&ndash;3
-				business days.
-			{:else}
-				There was a problem sending your message. Please try again, or email us directly at
-				<a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>.
-			{/if}
-		</p>
-	{/if}
+		{#if status === 'success' || status === 'error'}
+			<p bind:this={resultEl} tabindex="-1" role="status" class="contact__result">
+				{#if status === 'success'}
+					Thank you for your message. If it was an inquiry, we'll get back to you within 1&ndash;3
+					business days.
+				{:else}
+					There was a problem sending your message. Please try again, or email us directly at
+					<a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>.
+				{/if}
+			</p>
+		{/if}
+	</div>
 </section>
 
 <style>
@@ -192,10 +221,23 @@
 	}
 
 	.contact__result {
-		grid-column: 1 / -1;
 		padding: 1rem 1.25rem;
 		border-left: 3px solid var(--accent);
 		background-color: var(--paper-sunk);
+	}
+
+	.contact__result:not(:only-child) {
+		margin-block-start: 1.25rem;
+	}
+
+	/*
+	 * Only the easing is behind the motion query — the height still settles for
+	 * reduced-motion users, just instantly.
+	 */
+	@media (prefers-reduced-motion: no-preference) {
+		.contact__panel {
+			transition: min-height 420ms var(--tx-easing);
+		}
 	}
 
 	.contact__hp {

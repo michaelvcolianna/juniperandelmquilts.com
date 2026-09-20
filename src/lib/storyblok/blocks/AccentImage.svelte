@@ -18,6 +18,10 @@
 
 <style>
 	/* A full-bleed band of colour and texture between text blocks. */
+	.accent-image {
+		border-top: 1px solid var(--seam);
+	}
+
 	.accent-image :global(img) {
 		width: 100%;
 		aspect-ratio: 3 / 2;
@@ -26,6 +30,10 @@
 	}
 
 	@media (min-width: 48em) {
+		.accent-image {
+			border-top: 1px solid var(--seam);
+		}
+
 		.accent-image :global(img) {
 			aspect-ratio: 3 / 1;
 		}

@@ -51,9 +51,24 @@
 </article>
 
 <style>
+	.blog-post {
+		/*
+		 * Wider than --prose-width, which is tuned for short intro copy. Long-form
+		 * posts read better nearer 72 characters, and it gives embedded blocks
+		 * room to breathe.
+		 */
+		--blog-measure: 46rem;
+	}
+
+	/* Shared by the header, body and footer so the column edge is continuous. */
+	.blog-post__head,
+	.blog-post__body,
+	.blog-post__foot {
+		max-width: calc(var(--blog-measure) + var(--gutter) * 2);
+	}
+
 	.blog-post__head {
 		padding-block: clamp(2.5rem, 7vw, 4.5rem) clamp(1.5rem, 4vw, 2.5rem);
-		max-width: calc(var(--prose-width) + var(--gutter) * 2);
 	}
 
 	.blog-post__head time {
@@ -72,12 +87,10 @@
 	 * lines on tablets.
 	 */
 	.blog-post__body {
-		max-width: calc(var(--prose-width) + var(--gutter) * 2);
 		padding-block: clamp(2rem, 6vw, 3.5rem);
 	}
 
 	.blog-post__foot {
-		max-width: calc(var(--prose-width) + var(--gutter) * 2);
 		padding-block-end: var(--block-space);
 	}
 
