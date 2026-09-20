@@ -35,7 +35,6 @@
 	<meta name="description" content={metaDescription} />
 	<link rel="canonical" href={canonical} />
 
-	<!-- Carried over from the Nuxt build, alongside static/robots.txt. -->
 	<meta name="robots" content="noai, noimageai" />
 
 	<meta property="og:site_name" content={SITE_NAME} />

@@ -10,21 +10,6 @@ const gitignorePath = path.resolve(import.meta.dirname, '.gitignore');
 
 export default defineConfig(
 	includeIgnoreFile(gitignorePath),
-	{
-		// The Nuxt sources are still on disk until the Phase 5 cutover. They are not
-		// part of this project and are not linted.
-		ignores: [
-			'components/**',
-			'composables/**',
-			'layouts/**',
-			'pages/**',
-			'storyblok/**',
-			'assets/**',
-			'public/**',
-			'error.vue',
-			'nuxt.config.ts'
-		]
-	},
 	js.configs.recommended,
 	ts.configs.recommended,
 	svelte.configs.recommended,

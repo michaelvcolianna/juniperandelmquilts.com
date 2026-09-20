@@ -10,7 +10,7 @@ import type { Story, StoryblokStory } from './types';
  * means an SDK bump can never break the build.
  */
 
-/** Relations the CMS expects resolved. Carried over from the Nuxt build. */
+/** Relations the CMS expects resolved. */
 export const RESOLVE_RELATIONS = ['featured-items.items'];
 
 /*
@@ -70,7 +70,7 @@ export interface StoryListResult {
 /**
  * Fetch a page of stories.
  *
- * The Nuxt version of this read `response.data.stories` for the rows but
+ * The old version of this read `response.data.stories` for the rows but
  * `response.total` / `response.perPage` for the counts — two different shapes —
  * so the page count came out `NaN` and pagination never rendered. The client
  * returns `total` on the response and echoes `per_page` from the request, so

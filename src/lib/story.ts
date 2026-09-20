@@ -7,7 +7,7 @@ import type { StoryContent, StoryblokAsset, BlogPostBlok } from './storyblok/typ
  * Pick the best available image for a story: the hero from its first block,
  * falling back to the story's card image.
  *
- * The Nuxt `bestImage` composable read `body[0].hero.filename` directly, which
+ * The old `bestImage` composable read `body[0].hero.filename` directly, which
  * threw whenever the first block had no `hero` field at all. Guarded here.
  */
 export function bestImage(content: StoryContent | undefined | null): StoryblokAsset | undefined {
@@ -30,7 +30,7 @@ export function showsHero(content: StoryContent | undefined | null): boolean {
 	return first?.show_hero === 'yes';
 }
 
-/** Matches the Nuxt `storyDate` composable's default format. */
+/** Matches the old `storyDate` composable's default format. */
 export function storyDate(date: string | null | undefined, pattern = 'MMM do, yyyy'): string {
 	if (!date) return '';
 

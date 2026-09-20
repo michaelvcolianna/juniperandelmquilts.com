@@ -6,7 +6,7 @@ import type { PageServerLoad } from './$types';
  * Draft preview for the Storyblok Visual Editor.
  *
  * Point the space's preview URL at https://<host>/preview/ so editors keep the
- * live-preview workflow they had under Nuxt. Never prerendered, and it reads the
+ * live-preview workflow they had before. Never prerendered, and it reads the
  * draft version rather than published content.
  */
 export const prerender = false;

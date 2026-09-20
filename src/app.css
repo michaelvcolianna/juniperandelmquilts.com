@@ -24,9 +24,16 @@
 	/* Accent, darkened for hover. Still AA on paper. */
 	--accent-deep: #8a3524;
 
-	--font-heading: 'Newsreader', Georgia, 'Times New Roman', serif;
+	/*
+	 * Self-hosted variable fonts, imported in +layout.svelte. Fontsource names
+	 * the variable families "… Variable"; the plain names are kept next in the
+	 * stack so a failed load falls back to a static install rather than straight
+	 * to the system serif.
+	 */
+	--font-heading: 'Newsreader Variable', 'Newsreader', Georgia, 'Times New Roman', serif;
 	--font-body:
-		'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+		'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+		Arial, sans-serif;
 
 	/*
 	 * Fluid type on rem, so it honours the user's browser font size (WCAG 1.4.4)

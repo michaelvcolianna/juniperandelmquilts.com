@@ -24,7 +24,7 @@ export interface BlogListing {
 /**
  * One page of blog posts.
  *
- * The Nuxt blog index fetched inside `onMounted`, so the listing had no
+ * The old blog index fetched inside `onMounted`, so the listing had no
  * server-rendered content and no SEO at all. It also mixed two response shapes
  * when computing the page count, which came out `NaN`, and referenced an
  * undefined `currentPgae` in the "next" link. All three are fixed by loading on

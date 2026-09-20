@@ -6,7 +6,7 @@
 	let { blok }: { blok: AccentImageBlok } = $props();
 </script>
 
-<!-- Purely decorative band; hidden from assistive tech, as in the Nuxt build. -->
+<!-- Purely decorative band; hidden from assistive tech. -->
 <section {...editableAttrs(blok)} id={blok._uid} class="accent-image" aria-hidden="true">
 	<!--
 		A single 2:1 crop serves both breakpoints: object-fit trims it to 3:2 on

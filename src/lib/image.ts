@@ -1,10 +1,9 @@
 /**
  * Storyblok image-service URL builder.
  *
- * There is no `@nuxt/image` equivalent for SvelteKit, and `@sveltejs/enhanced-img`
- * only handles local files at build time, so it cannot touch Storyblok assets.
- * Storyblok's own image service does the resizing CDN-side, which is what the
- * Nuxt build was doing anyway via the `storyblok` provider.
+ * `@sveltejs/enhanced-img` only handles local files at build time, so it cannot
+ * touch Storyblok assets. Storyblok's own image service does the resizing
+ * CDN-side.
  *
  * Assets are served through the branded CloudFront distribution that fronts
  * `a.storyblok.com`, set up in commit a32be8b.

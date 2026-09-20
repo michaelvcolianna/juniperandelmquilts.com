@@ -6,10 +6,7 @@ import type { RequestHandler } from './$types';
 /**
  * Newsletter signup.
  *
- * This route exists so the mailing-list credential stays on the server. The Nuxt
- * build called Brevo directly from the browser with the key in
- * `runtimeConfig.public`, so it shipped in the client bundle (commits 86ebc62,
- * ae739df, 81c1d96 show this was a workaround for a 401, not a decision).
+ * This route exists so the mailing-list credential stays on the server.
  *
  * The decision-making lives in `$lib/newsletter`; this only maps an outcome
  * onto HTTP.

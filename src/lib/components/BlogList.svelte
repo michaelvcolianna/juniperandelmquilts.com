@@ -133,7 +133,7 @@
 	}
 
 	/*
-	 * Pagination. The Nuxt version never rendered — its page count evaluated to
+	 * Pagination. The old version never rendered — its page count evaluated to
 	 * NaN — so this is new rather than ported. Disabled directions stay in the
 	 * flow as plain text so the control does not shift position between pages.
 	 */

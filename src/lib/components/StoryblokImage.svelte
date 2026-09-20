@@ -11,9 +11,7 @@
 	interface Props {
 		image: StoryblokAsset | undefined | null;
 		/**
-		 * Decorative images get `alt=""` so screen readers skip them. The Nuxt
-		 * build used the same flag for the Mantel, AccentImage and Newsletter
-		 * backgrounds, which are pure atmosphere.
+		 * Decorative images get `alt=""` so screen readers skip them.
 		 */
 		decorative?: boolean;
 		sizes?: string;

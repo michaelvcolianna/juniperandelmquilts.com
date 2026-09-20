@@ -12,16 +12,6 @@
 	let { blok, priority = false }: Props = $props();
 </script>
 
-<!--
-	The Nuxt Mantel laid the headline over the image and made it readable by
-	blurring the photo, dropping it to 65% brightness, desaturating it and adding
-	two text-shadows — hiding the quilt to rescue the text, and still landing on
-	unpredictable contrast because the ratio depended on whichever pixels sat
-	behind the words.
-
-	Here the image and the text are separate pieces of the patchwork. The quilt is
-	shown sharp and uncropped, and the headline sits on paper at a fixed 16.3:1.
--->
 <section {...editableAttrs(blok)} id={blok._uid} class="mantel">
 	<div class="mantel__image">
 		<StoryblokImage

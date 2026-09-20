@@ -58,12 +58,6 @@
 					{@const summary = excerpt(story.content)}
 					<li>
 						<article id="story-{story.id}" class="card">
-							<!--
-								The Nuxt markup put aria-hidden="true" on this figure, which hid
-								the link from screen readers while leaving it keyboard-focusable
-								— a WCAG 4.1.2 failure. Instead the image is marked decorative
-								and the caption link carries the accessible name.
-							-->
 							<a {href} tabindex="-1" aria-hidden="true" class="card__image">
 								<StoryblokImage
 									{image}

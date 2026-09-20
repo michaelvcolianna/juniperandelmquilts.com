@@ -9,13 +9,6 @@ node_modules
 .wrangler
 .output
 
-# Nuxt leftovers (removed at cutover)
-.nuxt
-.nuxtignore
-.nitro
-.cache
-dist
-
 # OS
 .DS_Store
 Thumbs.db

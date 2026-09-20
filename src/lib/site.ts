@@ -6,7 +6,7 @@
  * This is hardcoded rather than read from `page.url` because during prerendering
  * SvelteKit serves pages from an internal origin (`http://sveltekit-prerender`),
  * so `page.url.origin` would bake the wrong host into every canonical and
- * og:url tag. The Nuxt build had the mirror-image bug: `metaUrl()` used
+ * og:url tag. The old build had the mirror-image bug: `metaUrl()` used
  * `process.client ? window.location.origin : ''`, which emitted *relative*
  * canonicals during SSR.
  */

@@ -10,10 +10,8 @@ import Mantel from './blocks/Mantel.svelte';
 import NewsletterSignup from './blocks/NewsletterSignup.svelte';
 
 /**
- * Maps Storyblok component names to Svelte components. The Nuxt build got this
- * for free from `@storyblok/nuxt`'s directory-based auto-registration; here it
- * is explicit, which also means an unknown component fails visibly rather than
- * rendering nothing.
+ * Maps Storyblok component names to Svelte components. An unknown component
+ * fails visibly rather than rendering nothing.
  *
  * Note `Content` and `AlignedImage` render `RichText`, which reads this map —
  * a module cycle. `getBlockComponent` is a function so the lookup happens at

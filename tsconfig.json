@@ -11,8 +11,5 @@
 		"sourceMap": true,
 		"strict": true,
 		"moduleResolution": "bundler"
-	},
-	// The Nuxt sources are still on disk until the Phase 5 cutover; they are not
-	// part of this project and must not be type-checked.
-	"exclude": ["components", "composables", "layouts", "pages", "storyblok", "assets"]
+	}
 }

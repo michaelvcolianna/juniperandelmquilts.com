@@ -12,7 +12,7 @@
 	let toggleEl = $state<HTMLButtonElement | null>(null);
 	let navEl = $state<HTMLElement | null>(null);
 
-	// The Nuxt build flipped a `.menu-open` class on <html>, which swapped a set
+	// The old build flipped a `.menu-open` class on <html>, which swapped a set
 	// of custom properties and locked scrolling. Kept, so the CSS can do the same.
 	$effect(() => {
 		document.documentElement.classList.toggle('menu-open', open);

@@ -3,7 +3,7 @@ import type { RichTextDocument, RichTextNode, Blok } from './types';
 
 /**
  * Storyblok richtext can contain embedded component ("blok") nodes alongside
- * ordinary prose. The Nuxt `RichText.vue` walked the top-level node list and
+ * ordinary prose. The old `RichText.vue` walked the top-level node list and
  * split it: `type === 'blok'` nodes became live Vue components, everything else
  * was rendered to an HTML string one node at a time.
  *

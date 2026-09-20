@@ -46,7 +46,7 @@ describe('splitRichText', () => {
 		expect(splitRichText(doc).map((p) => p.kind)).toEqual(['html', 'blok', 'html']);
 	});
 
-	it('renders each prose node as its own fragment, matching the Nuxt markup', () => {
+	it('renders each prose node as its own fragment, matching the old markup', () => {
 		const doc = {
 			type: 'doc',
 			content: [paragraph('one'), paragraph('two')]
