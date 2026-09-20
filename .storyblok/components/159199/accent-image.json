@@ -1,0 +1,21 @@
+{
+  "id": 1,
+  "created_at": "",
+  "updated_at": "",
+  "is_root": false,
+  "is_nestable": true,
+  "name": "accent-image",
+  "color": "#dfe3e8",
+  "description": "An image with a border, no text overlaid. It is tall on small screens, wide on larger ones.",
+  "schema": {
+    "image": {
+      "description": "",
+      "filetypes": [
+        "images"
+      ],
+      "required": true,
+      "type": "asset",
+      "pos": 0
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": 1,
+  "created_at": "",
+  "updated_at": "",
+  "is_root": false,
+  "is_nestable": true,
+  "name": "aligned-image",
+  "color": "#dfe3e8",
+  "description": "A section with text and an image, configurable to change the position of the image above or below the text.",
+  "schema": {
+    "title": {
+      "type": "text",
+      "pos": 0
+    },
+    "content": {
+      "type": "richtext",
+      "pos": 1
+    },
+    "image": {
+      "filetypes": [
+        "images"
+      ],
+      "type": "asset",
+      "pos": 2
+    },
+    "alignment": {
+      "default_value": "right",
+      "options": [
+        {
+          "_uid": "d7d5cda9-1c55-4fdc-b7e0-e7cb340ecc39",
+          "name": "Top",
+          "value": "right"
+        },
+        {
+          "_uid": "549b6f48-529f-40ff-b062-fd008885cb34",
+          "name": "Bottom",
+          "value": "left"
+        }
+      ],
+      "type": "option",
+      "use_uuid": true,
+      "pos": 3
+    }
+  }
+}

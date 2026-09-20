@@ -1,0 +1,31 @@
+{
+  "id": 1,
+  "created_at": "",
+  "updated_at": "",
+  "is_root": false,
+  "is_nestable": true,
+  "name": "newsletter-signup",
+  "color": "#dfe3e8",
+  "description": "Content for the newsletter form.",
+  "schema": {
+    "headline": {
+      "description": "Large text displayed at the top of the section.",
+      "required": true,
+      "type": "text",
+      "pos": 0
+    },
+    "copy": {
+      "description": "Optional small text displayed under the headline.",
+      "type": "textarea",
+      "pos": 1
+    },
+    "image": {
+      "description": "Optional image to use as background for the section.",
+      "filetypes": [
+        "images"
+      ],
+      "type": "asset",
+      "pos": 2
+    }
+  }
+}

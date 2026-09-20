@@ -97,3 +97,25 @@ describe('fields the frontend depends on', () => {
 		expect(fieldNames(blockName)).toEqual(expect.arrayContaining(expected as string[]));
 	});
 });
+
+describe('the generated model is what is loaded', () => {
+	const blocks = Object.values(schema.blocks);
+	// The field union is discriminated by `type`, so properties like
+	// `description` only exist on some members. Widened for assertions.
+	const field = (block: string, name: string): Record<string, unknown> | undefined =>
+		blocks.find((b) => (b.name as string) === block)?.fields.find((f) => f.name === name) as
+			Record<string, unknown> | undefined;
+
+	it('mantel.copy is a textarea, which only the real space knows', () => {
+		// My hand-written schema guessed `text`; schema:diff proved it wrong.
+		expect(field('mantel', 'copy')?.type).toBe('textarea');
+	});
+
+	it('carries the editor descriptions written in Storyblok', () => {
+		expect(field('mantel', 'headline')?.description).toBe('Large text displayed in the mantel.');
+	});
+
+	it('includes the folders the space defines', () => {
+		expect(Object.keys(schema.folders ?? {})).toHaveLength(3);
+	});
+});

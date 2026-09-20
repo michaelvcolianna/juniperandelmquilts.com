@@ -1,21 +1,13 @@
-import type { BlockContent, AssetFieldValue, RichTextFieldValue } from '@storyblok/schema';
-import type {
-	AnyBlock,
-	accentImageBlock,
-	alignedImageBlock,
-	blogPostBlock,
-	contentBlock,
-	ctaBlock,
-	featuredItemsBlock,
-	imageGalleryBlock,
-	mantelBlock,
-	newsletterSignupBlock
-} from './schema';
+import type { AssetFieldValue, RichTextFieldValue } from '@storyblok/schema';
+import type { Block } from './schema';
 
 /**
- * Content shapes for space 159199, derived from `schema.ts` rather than written
- * by hand. Renaming a field in the schema now breaks the components that read
- * it, instead of the two drifting silently.
+ * Content shapes for space 159199.
+ *
+ * These come from the generated model in `.storyblok/schema/`, via the
+ * `Block<'name'>` helper it exports, rather than being written by hand. A field
+ * renamed in Storyblok and pulled down with `storyblok schema init` now breaks
+ * the component that reads it, instead of the two drifting silently.
  */
 
 export type StoryblokAsset = AssetFieldValue;
@@ -27,7 +19,7 @@ export type RichTextDocument = RichTextFieldValue;
  * Deliberately structural rather than the generated union: `Blok.svelte` and
  * `RichText.svelte` dispatch on `component` at runtime over genuinely
  * heterogeneous data, and every root story content object flows through here
- * too. The generated per-block types above are where the schema earns its keep.
+ * too. The per-block types below are where the schema earns its keep.
  */
 export interface Blok {
 	_uid: string;
@@ -36,14 +28,14 @@ export interface Blok {
 	[key: string]: unknown;
 }
 
-export type MantelBlok = BlockContent<typeof mantelBlock, AnyBlock>;
-export type AccentImageBlok = BlockContent<typeof accentImageBlock, AnyBlock>;
-export type AlignedImageBlok = BlockContent<typeof alignedImageBlock, AnyBlock>;
-export type ImageGalleryBlok = BlockContent<typeof imageGalleryBlock, AnyBlock>;
-export type CtaBlok = BlockContent<typeof ctaBlock, AnyBlock>;
-export type NewsletterSignupBlok = BlockContent<typeof newsletterSignupBlock, AnyBlock>;
-export type BlogPostBlok = BlockContent<typeof blogPostBlock, AnyBlock>;
-export type ContentBlok = BlockContent<typeof contentBlock, AnyBlock>;
+export type MantelBlok = Block<'mantel'>;
+export type AccentImageBlok = Block<'accent-image'>;
+export type AlignedImageBlok = Block<'aligned-image'>;
+export type ImageGalleryBlok = Block<'image-gallery'>;
+export type CtaBlok = Block<'cta'>;
+export type NewsletterSignupBlok = Block<'newsletter-signup'>;
+export type BlogPostBlok = Block<'blog-post'>;
+export type ContentBlok = Block<'content'>;
 
 /**
  * `items` is an `options` field, so the schema types it as an array of story
@@ -52,7 +44,7 @@ export type ContentBlok = BlockContent<typeof contentBlock, AnyBlock>;
  * those UUIDs with whole story objects, so the delivered shape is overridden
  * here to match what the component actually receives.
  */
-export type FeaturedItemsBlok = Omit<BlockContent<typeof featuredItemsBlock, AnyBlock>, 'items'> & {
+export type FeaturedItemsBlok = Omit<Block<'featured-items'>, 'items'> & {
 	items?: StoryblokStory[] | null;
 };
 

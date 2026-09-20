@@ -1,0 +1,19 @@
+{
+  "id": 1,
+  "created_at": "",
+  "updated_at": "",
+  "is_root": false,
+  "is_nestable": true,
+  "name": "image-gallery",
+  "color": "#dfe3e8",
+  "description": "A section with multiple images.",
+  "schema": {
+    "images": {
+      "filetypes": [
+        "images"
+      ],
+      "type": "multiasset",
+      "pos": 0
+    }
+  }
+}

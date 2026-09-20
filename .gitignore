@@ -28,8 +28,11 @@ Thumbs.db
 # Local dev TLS certs (generate with mkcert; never commit)
 *.pem
 
-# Storyblok CLI reports and rollback changesets
-.storyblok/
+# Storyblok CLI run artefacts. NOT .storyblok/schema/ — that is the source of
+# truth for the content model and must be committed.
+.storyblok/logs/
+.storyblok/reports/
+.storyblok/changesets/
 
 # Vite
 vite.config.js.timestamp-*

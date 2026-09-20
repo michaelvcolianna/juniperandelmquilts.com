@@ -1,0 +1,23 @@
+{
+  "id": 1,
+  "created_at": "",
+  "updated_at": "",
+  "is_root": false,
+  "is_nestable": true,
+  "name": "cta",
+  "display_name": "Call to Action",
+  "color": "#dfe3e8",
+  "schema": {
+    "headline": {
+      "description": "Large text displayed at the top of the section.",
+      "required": true,
+      "type": "text",
+      "pos": 0
+    },
+    "copy": {
+      "description": "Optional small text displayed under the headline.",
+      "type": "textarea",
+      "pos": 1
+    }
+  }
+}

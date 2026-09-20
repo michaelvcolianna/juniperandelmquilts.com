@@ -1,0 +1,1232 @@
+{
+  "timestamp": "2026-09-20T18:45:27.356Z",
+  "spaceId": 159199,
+  "remote": {
+    "components": [
+      {
+        "name": "accent-image",
+        "display_name": null,
+        "description": "An image with a border, no text overlaid. It is tall on small screens, wide on larger ones.",
+        "created_at": "2022-10-20T18:46:31.186Z",
+        "updated_at": "2026-09-20T17:40:40.430Z",
+        "id": 3024609,
+        "schema": {
+          "image": {
+            "type": "asset",
+            "required": true,
+            "filetypes": [
+              "images"
+            ],
+            "description": "",
+            "id": "jpcnvYfRQJWVpkgmK-R5tA"
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "accent-image",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      {
+        "name": "aligned-image",
+        "display_name": null,
+        "description": "A section with text and an image, configurable to change the position of the image above or below the text.",
+        "created_at": "2022-12-31T19:37:23.720Z",
+        "updated_at": "2026-09-20T17:41:22.517Z",
+        "id": 3268938,
+        "schema": {
+          "title": {
+            "type": "text",
+            "pos": 0,
+            "id": "sZbCDduPS7OYsugTa0bOWg"
+          },
+          "content": {
+            "type": "richtext",
+            "pos": 1,
+            "id": "o0mhjFUNTeS5qpX_oI8Gtw"
+          },
+          "image": {
+            "type": "asset",
+            "filetypes": [
+              "images"
+            ],
+            "pos": 2,
+            "id": "zhZQQY_XTSixNdQ_RFvsog"
+          },
+          "alignment": {
+            "type": "option",
+            "use_uuid": true,
+            "options": [
+              {
+                "_uid": "d7d5cda9-1c55-4fdc-b7e0-e7cb340ecc39",
+                "value": "right",
+                "name": "Top"
+              },
+              {
+                "_uid": "549b6f48-529f-40ff-b062-fd008885cb34",
+                "name": "Bottom",
+                "value": "left"
+              }
+            ],
+            "default_value": "right",
+            "pos": 3,
+            "id": "iuw9qnohQVa0wQzzB4OB3g"
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "aligned-image",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      {
+        "name": "blog-post",
+        "display_name": null,
+        "description": "Used to create posts under the Blog directory.",
+        "created_at": "2022-10-20T18:56:34.189Z",
+        "updated_at": "2026-09-20T17:56:11.935Z",
+        "id": 3024631,
+        "schema": {
+          "body": {
+            "type": "richtext",
+            "required": true,
+            "description": "The blog post content.",
+            "pos": 0,
+            "id": "RpYyyX6CSlGvORaOkuE5kA"
+          },
+          "excerpt": {
+            "type": "textarea",
+            "pos": 2,
+            "description": "An optional short blurb about the blog post's contents. Displays in the blog listing and below the blog post title, if present.",
+            "id": "V80OuglBRUWLGfJa50EReQ"
+          },
+          "hero": {
+            "type": "asset",
+            "filetypes": [
+              "images"
+            ],
+            "required": false,
+            "description": "An optional image displayed when the post is featured, in the blog listing, and in the post itself.",
+            "pos": 3,
+            "id": "trO-SpjTQASFF5G-onFB7A"
+          },
+          "show_hero": {
+            "type": "option",
+            "use_uuid": true,
+            "pos": 4,
+            "description": "Whether to show the hero between the title and content.",
+            "options": [
+              {
+                "_uid": "6e141c17-bf0f-4b3c-9544-ea51bec32bed",
+                "name": "Yes",
+                "value": "yes"
+              },
+              {
+                "_uid": "7dd30ecf-bfc9-4f2e-a6ef-22ee4744dde9",
+                "value": "no",
+                "name": "No"
+              }
+            ],
+            "default_value": "yes",
+            "id": "yAdE9g0gRmyPAX46otbEiw"
+          },
+          "tab-78e9879a-a9c9-4251-99c8-7e22bea952c3": {
+            "display_name": "Content",
+            "keys": [
+              "body"
+            ],
+            "pos": 5,
+            "type": "tab",
+            "id": "eOmHmqnJQlGZyH4ivqlSww"
+          },
+          "tab-cbff14a4-ab3a-4826-90d1-e04a80467c6a": {
+            "display_name": "Config",
+            "keys": [
+              "show_hero",
+              "hero",
+              "excerpt"
+            ],
+            "pos": 6,
+            "type": "tab",
+            "id": "y_8UpKs6SCaQ0eBKgEZ8ag"
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "blog-post",
+        "component_group_uuid": "59a9ca91-9110-4a2a-8624-9fa90af1e5a9",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      {
+        "name": "content",
+        "display_name": null,
+        "description": "A page, either regular or a shell for use with a blog post.",
+        "created_at": "2022-10-20T18:34:07.861Z",
+        "updated_at": "2026-09-20T17:46:58.916Z",
+        "id": 3024597,
+        "schema": {
+          "tab-c2f8a4ce-1a3d-4a71-8e95-73fd7b5e5519": {
+            "display_name": "Content",
+            "keys": [
+              "body"
+            ],
+            "pos": 0,
+            "type": "tab",
+            "id": "wvikzho9SnGOlXP9e15VGQ",
+            "name": "tab-c2f8a4ce-1a3d-4a71-8e95-73fd7b5e5519"
+          },
+          "description": {
+            "type": "textarea",
+            "required": false,
+            "description": "An optional short blurb about the page's contents. Displays in search engine results and in social shares. An excerpt of the page content may be used if left blank.",
+            "id": "lC4GTo4tTcubETjbQ_ZBcQ",
+            "pos": 0
+          },
+          "tab-69539691-c25f-42a2-8cc0-82b6fb017161": {
+            "display_name": "Meta Info",
+            "keys": [
+              "card",
+              "description"
+            ],
+            "pos": 1,
+            "type": "tab",
+            "id": "aVOWkcJfQqKMwIK2-wFxYQ"
+          },
+          "card": {
+            "type": "asset",
+            "required": false,
+            "filetypes": [
+              "images"
+            ],
+            "description": "An optional image that shows up in social shares. The best size is 1200x630 pixels. Different from the hero image used for display on the site.",
+            "id": "HyZ0r_bdTcaWcbGGpBqqYA",
+            "pos": 1
+          },
+          "body": {
+            "type": "bloks",
+            "restrict_type": "groups",
+            "restrict_components": true,
+            "component_group_whitelist": [
+              "b960e0f9-f22f-4b42-890d-9658b148d049",
+              "59a9ca91-9110-4a2a-8624-9fa90af1e5a9"
+            ],
+            "id": "254lPcZ_QZ2tC0Xwyipxsg",
+            "pos": 2
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": true,
+        "preview_tmpl": null,
+        "is_nestable": false,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "content",
+        "component_group_uuid": null,
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      {
+        "name": "cta",
+        "display_name": "Call to Action",
+        "description": null,
+        "created_at": "2022-10-20T18:52:52.215Z",
+        "updated_at": "2024-12-12T22:02:51.029Z",
+        "id": 3024613,
+        "schema": {
+          "headline": {
+            "type": "text",
+            "pos": 1,
+            "description": "Large text displayed at the top of the section.",
+            "required": true
+          },
+          "copy": {
+            "type": "textarea",
+            "pos": 2,
+            "description": "Optional small text displayed under the headline."
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "Call to Action",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      {
+        "name": "featured-items",
+        "display_name": null,
+        "description": "A section to point out images or blog posts.",
+        "created_at": "2022-10-20T18:48:20.481Z",
+        "updated_at": "2026-09-20T17:48:08.550Z",
+        "id": 3024611,
+        "schema": {
+          "headline": {
+            "type": "text",
+            "required": true,
+            "description": "Large text displayed at the top of the section.",
+            "id": "5F-AMgpjR6q_CbPB-Exkow"
+          },
+          "copy": {
+            "type": "richtext",
+            "description": "Optional small text displayed under the headline.",
+            "id": "39igIc1USPuJTnvirHx7NA"
+          },
+          "items": {
+            "type": "options",
+            "source": "internal_stories",
+            "min_options": "",
+            "description": "Blog posts to feature.",
+            "restrict_type": "",
+            "restrict_components": true,
+            "component_whitelist": [
+              "content"
+            ],
+            "id": "idhc6igDQ6WlpU9c93l_bQ"
+          },
+          "images": {
+            "type": "multiasset",
+            "filetypes": [
+              "images"
+            ],
+            "description": "Images to feature.",
+            "id": "GmzBadRQTGaHG-yX1EgLnA"
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "featured-items",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      {
+        "name": "image-gallery",
+        "display_name": null,
+        "description": "A section with multiple images.",
+        "created_at": "2022-12-31T19:36:13.822Z",
+        "updated_at": "2026-09-20T17:48:26.564Z",
+        "id": 3268937,
+        "schema": {
+          "images": {
+            "type": "multiasset",
+            "filetypes": [
+              "images"
+            ]
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "image-gallery",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      {
+        "name": "mantel",
+        "display_name": null,
+        "description": "The top of the homepage.",
+        "created_at": "2022-10-20T18:38:36.814Z",
+        "updated_at": "2026-09-20T17:48:35.459Z",
+        "id": 3024601,
+        "schema": {
+          "headline": {
+            "type": "text",
+            "required": true,
+            "description": "Large text displayed in the mantel."
+          },
+          "copy": {
+            "type": "textarea",
+            "description": "Optional, smaller text that displays under the headline."
+          },
+          "image": {
+            "type": "asset",
+            "filetypes": [
+              "images"
+            ],
+            "description": "Optional image to use as background for the mantel."
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "mantel",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      {
+        "name": "newsletter-signup",
+        "display_name": null,
+        "description": "Content for the newsletter form.",
+        "created_at": "2022-10-20T18:49:53.802Z",
+        "updated_at": "2026-09-20T17:49:01.008Z",
+        "id": 3024612,
+        "schema": {
+          "headline": {
+            "type": "text",
+            "description": "Large text displayed at the top of the section.",
+            "required": true
+          },
+          "copy": {
+            "type": "textarea",
+            "description": "Optional small text displayed under the headline."
+          },
+          "image": {
+            "type": "asset",
+            "filetypes": [
+              "images"
+            ],
+            "description": "Optional image to use as background for the section."
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "newsletter-signup",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      }
+    ],
+    "componentFolders": [
+      {
+        "name": "Blocks",
+        "id": 66974,
+        "uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "parent_id": null,
+        "parent_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049"
+      },
+      {
+        "name": "Content",
+        "id": 80784,
+        "uuid": "59a9ca91-9110-4a2a-8624-9fa90af1e5a9",
+        "parent_id": null,
+        "parent_uuid": "59a9ca91-9110-4a2a-8624-9fa90af1e5a9"
+      },
+      {
+        "name": "Products",
+        "id": 92004,
+        "uuid": "b6b4ee79-a5ba-412e-b09c-976377e7cfcf",
+        "parent_id": null,
+        "parent_uuid": "b6b4ee79-a5ba-412e-b09c-976377e7cfcf"
+      }
+    ],
+    "datasources": []
+  },
+  "changes": [
+    {
+      "type": "component",
+      "name": "accent-image",
+      "action": "update",
+      "before": {
+        "name": "accent-image",
+        "display_name": null,
+        "description": "An image with a border, no text overlaid. It is tall on small screens, wide on larger ones.",
+        "created_at": "2022-10-20T18:46:31.186Z",
+        "updated_at": "2026-09-20T17:40:40.430Z",
+        "id": 3024609,
+        "schema": {
+          "image": {
+            "type": "asset",
+            "required": true,
+            "filetypes": [
+              "images"
+            ],
+            "description": "",
+            "id": "jpcnvYfRQJWVpkgmK-R5tA"
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "accent-image",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      "after": {
+        "id": 1,
+        "created_at": "",
+        "updated_at": "",
+        "is_root": false,
+        "is_nestable": true,
+        "name": "accent-image",
+        "color": "#dfe3e8",
+        "description": "An image with a border, no text overlaid. It is tall on small screens, wide on larger ones.",
+        "folder": "blocks",
+        "schema": {
+          "image": {
+            "description": "",
+            "filetypes": [
+              "images"
+            ],
+            "required": true,
+            "type": "asset",
+            "pos": 0
+          }
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "blog-post",
+      "action": "update",
+      "before": {
+        "name": "blog-post",
+        "display_name": null,
+        "description": "Used to create posts under the Blog directory.",
+        "created_at": "2022-10-20T18:56:34.189Z",
+        "updated_at": "2026-09-20T17:56:11.935Z",
+        "id": 3024631,
+        "schema": {
+          "body": {
+            "type": "richtext",
+            "required": true,
+            "description": "The blog post content.",
+            "pos": 0,
+            "id": "RpYyyX6CSlGvORaOkuE5kA"
+          },
+          "excerpt": {
+            "type": "textarea",
+            "pos": 2,
+            "description": "An optional short blurb about the blog post's contents. Displays in the blog listing and below the blog post title, if present.",
+            "id": "V80OuglBRUWLGfJa50EReQ"
+          },
+          "hero": {
+            "type": "asset",
+            "filetypes": [
+              "images"
+            ],
+            "required": false,
+            "description": "An optional image displayed when the post is featured, in the blog listing, and in the post itself.",
+            "pos": 3,
+            "id": "trO-SpjTQASFF5G-onFB7A"
+          },
+          "show_hero": {
+            "type": "option",
+            "use_uuid": true,
+            "pos": 4,
+            "description": "Whether to show the hero between the title and content.",
+            "options": [
+              {
+                "_uid": "6e141c17-bf0f-4b3c-9544-ea51bec32bed",
+                "name": "Yes",
+                "value": "yes"
+              },
+              {
+                "_uid": "7dd30ecf-bfc9-4f2e-a6ef-22ee4744dde9",
+                "value": "no",
+                "name": "No"
+              }
+            ],
+            "default_value": "yes",
+            "id": "yAdE9g0gRmyPAX46otbEiw"
+          },
+          "tab-78e9879a-a9c9-4251-99c8-7e22bea952c3": {
+            "display_name": "Content",
+            "keys": [
+              "body"
+            ],
+            "pos": 5,
+            "type": "tab",
+            "id": "eOmHmqnJQlGZyH4ivqlSww"
+          },
+          "tab-cbff14a4-ab3a-4826-90d1-e04a80467c6a": {
+            "display_name": "Config",
+            "keys": [
+              "show_hero",
+              "hero",
+              "excerpt"
+            ],
+            "pos": 6,
+            "type": "tab",
+            "id": "y_8UpKs6SCaQ0eBKgEZ8ag"
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "blog-post",
+        "component_group_uuid": "59a9ca91-9110-4a2a-8624-9fa90af1e5a9",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      "after": {
+        "id": 1,
+        "created_at": "",
+        "updated_at": "",
+        "is_root": false,
+        "is_nestable": true,
+        "name": "blog-post",
+        "color": "#dfe3e8",
+        "description": "Used to create posts under the Blog directory.",
+        "folder": "content",
+        "schema": {
+          "body": {
+            "description": "The blog post content.",
+            "required": true,
+            "type": "richtext",
+            "pos": 0
+          },
+          "excerpt": {
+            "description": "An optional short blurb about the blog post's contents. Displays in the blog listing and below the blog post title, if present.",
+            "type": "textarea",
+            "pos": 1
+          },
+          "hero": {
+            "description": "An optional image displayed when the post is featured, in the blog listing, and in the post itself.",
+            "filetypes": [
+              "images"
+            ],
+            "required": false,
+            "type": "asset",
+            "pos": 2
+          },
+          "show_hero": {
+            "default_value": "yes",
+            "description": "Whether to show the hero between the title and content.",
+            "options": [
+              {
+                "_uid": "6e141c17-bf0f-4b3c-9544-ea51bec32bed",
+                "name": "Yes",
+                "value": "yes"
+              },
+              {
+                "_uid": "7dd30ecf-bfc9-4f2e-a6ef-22ee4744dde9",
+                "name": "No",
+                "value": "no"
+              }
+            ],
+            "type": "option",
+            "use_uuid": true,
+            "pos": 3
+          },
+          "tab-78e9879a-a9c9-4251-99c8-7e22bea952c3": {
+            "display_name": "Content",
+            "keys": [
+              "body"
+            ],
+            "type": "tab",
+            "pos": 4
+          },
+          "tab-cbff14a4-ab3a-4826-90d1-e04a80467c6a": {
+            "display_name": "Config",
+            "keys": [
+              "show_hero",
+              "hero",
+              "excerpt"
+            ],
+            "type": "tab",
+            "pos": 5
+          }
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "content",
+      "action": "update",
+      "before": {
+        "name": "content",
+        "display_name": null,
+        "description": "A page, either regular or a shell for use with a blog post.",
+        "created_at": "2022-10-20T18:34:07.861Z",
+        "updated_at": "2026-09-20T17:46:58.916Z",
+        "id": 3024597,
+        "schema": {
+          "tab-c2f8a4ce-1a3d-4a71-8e95-73fd7b5e5519": {
+            "display_name": "Content",
+            "keys": [
+              "body"
+            ],
+            "pos": 0,
+            "type": "tab",
+            "id": "wvikzho9SnGOlXP9e15VGQ",
+            "name": "tab-c2f8a4ce-1a3d-4a71-8e95-73fd7b5e5519"
+          },
+          "description": {
+            "type": "textarea",
+            "required": false,
+            "description": "An optional short blurb about the page's contents. Displays in search engine results and in social shares. An excerpt of the page content may be used if left blank.",
+            "id": "lC4GTo4tTcubETjbQ_ZBcQ",
+            "pos": 0
+          },
+          "tab-69539691-c25f-42a2-8cc0-82b6fb017161": {
+            "display_name": "Meta Info",
+            "keys": [
+              "card",
+              "description"
+            ],
+            "pos": 1,
+            "type": "tab",
+            "id": "aVOWkcJfQqKMwIK2-wFxYQ"
+          },
+          "card": {
+            "type": "asset",
+            "required": false,
+            "filetypes": [
+              "images"
+            ],
+            "description": "An optional image that shows up in social shares. The best size is 1200x630 pixels. Different from the hero image used for display on the site.",
+            "id": "HyZ0r_bdTcaWcbGGpBqqYA",
+            "pos": 1
+          },
+          "body": {
+            "type": "bloks",
+            "restrict_type": "groups",
+            "restrict_components": true,
+            "component_group_whitelist": [
+              "b960e0f9-f22f-4b42-890d-9658b148d049",
+              "59a9ca91-9110-4a2a-8624-9fa90af1e5a9"
+            ],
+            "id": "254lPcZ_QZ2tC0Xwyipxsg",
+            "pos": 2
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": true,
+        "preview_tmpl": null,
+        "is_nestable": false,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "content",
+        "component_group_uuid": null,
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      "after": {
+        "id": 1,
+        "created_at": "",
+        "updated_at": "",
+        "is_root": true,
+        "is_nestable": false,
+        "name": "content",
+        "color": "#dfe3e8",
+        "description": "A page, either regular or a shell for use with a blog post.",
+        "schema": {
+          "tab-c2f8a4ce-1a3d-4a71-8e95-73fd7b5e5519": {
+            "display_name": "Content",
+            "keys": [
+              "body"
+            ],
+            "type": "tab",
+            "pos": 0
+          },
+          "description": {
+            "description": "An optional short blurb about the page's contents. Displays in search engine results and in social shares. An excerpt of the page content may be used if left blank.",
+            "required": false,
+            "type": "textarea",
+            "pos": 1
+          },
+          "tab-69539691-c25f-42a2-8cc0-82b6fb017161": {
+            "display_name": "Meta Info",
+            "keys": [
+              "card",
+              "description"
+            ],
+            "type": "tab",
+            "pos": 2
+          },
+          "card": {
+            "description": "An optional image that shows up in social shares. The best size is 1200x630 pixels. Different from the hero image used for display on the site.",
+            "filetypes": [
+              "images"
+            ],
+            "required": false,
+            "type": "asset",
+            "pos": 3
+          },
+          "body": {
+            "type": "bloks",
+            "pos": 4,
+            "component_group_whitelist": [
+              "blocks",
+              "content"
+            ],
+            "restrict_components": true,
+            "restrict_type": "groups"
+          }
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "cta",
+      "action": "update",
+      "before": {
+        "name": "cta",
+        "display_name": "Call to Action",
+        "description": null,
+        "created_at": "2022-10-20T18:52:52.215Z",
+        "updated_at": "2024-12-12T22:02:51.029Z",
+        "id": 3024613,
+        "schema": {
+          "headline": {
+            "type": "text",
+            "pos": 1,
+            "description": "Large text displayed at the top of the section.",
+            "required": true
+          },
+          "copy": {
+            "type": "textarea",
+            "pos": 2,
+            "description": "Optional small text displayed under the headline."
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "Call to Action",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      "after": {
+        "id": 1,
+        "created_at": "",
+        "updated_at": "",
+        "is_root": false,
+        "is_nestable": true,
+        "name": "cta",
+        "display_name": "Call to Action",
+        "color": "#dfe3e8",
+        "folder": "blocks",
+        "schema": {
+          "headline": {
+            "description": "Large text displayed at the top of the section.",
+            "required": true,
+            "type": "text",
+            "pos": 0
+          },
+          "copy": {
+            "description": "Optional small text displayed under the headline.",
+            "type": "textarea",
+            "pos": 1
+          }
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "featured-items",
+      "action": "update",
+      "before": {
+        "name": "featured-items",
+        "display_name": null,
+        "description": "A section to point out images or blog posts.",
+        "created_at": "2022-10-20T18:48:20.481Z",
+        "updated_at": "2026-09-20T17:48:08.550Z",
+        "id": 3024611,
+        "schema": {
+          "headline": {
+            "type": "text",
+            "required": true,
+            "description": "Large text displayed at the top of the section.",
+            "id": "5F-AMgpjR6q_CbPB-Exkow"
+          },
+          "copy": {
+            "type": "richtext",
+            "description": "Optional small text displayed under the headline.",
+            "id": "39igIc1USPuJTnvirHx7NA"
+          },
+          "items": {
+            "type": "options",
+            "source": "internal_stories",
+            "min_options": "",
+            "description": "Blog posts to feature.",
+            "restrict_type": "",
+            "restrict_components": true,
+            "component_whitelist": [
+              "content"
+            ],
+            "id": "idhc6igDQ6WlpU9c93l_bQ"
+          },
+          "images": {
+            "type": "multiasset",
+            "filetypes": [
+              "images"
+            ],
+            "description": "Images to feature.",
+            "id": "GmzBadRQTGaHG-yX1EgLnA"
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "featured-items",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      "after": {
+        "id": 1,
+        "created_at": "",
+        "updated_at": "",
+        "is_root": false,
+        "is_nestable": true,
+        "name": "featured-items",
+        "color": "#dfe3e8",
+        "description": "A section to point out images or blog posts.",
+        "folder": "blocks",
+        "schema": {
+          "headline": {
+            "description": "Large text displayed at the top of the section.",
+            "required": true,
+            "type": "text",
+            "pos": 0
+          },
+          "copy": {
+            "description": "Optional small text displayed under the headline.",
+            "type": "richtext",
+            "pos": 1
+          },
+          "items": {
+            "filter_content_type": [
+              "content"
+            ],
+            "description": "Blog posts to feature.",
+            "min_options": "",
+            "source": "internal_stories",
+            "type": "options",
+            "pos": 2
+          },
+          "images": {
+            "description": "Images to feature.",
+            "filetypes": [
+              "images"
+            ],
+            "type": "multiasset",
+            "pos": 3
+          }
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "image-gallery",
+      "action": "update",
+      "before": {
+        "name": "image-gallery",
+        "display_name": null,
+        "description": "A section with multiple images.",
+        "created_at": "2022-12-31T19:36:13.822Z",
+        "updated_at": "2026-09-20T17:48:26.564Z",
+        "id": 3268937,
+        "schema": {
+          "images": {
+            "type": "multiasset",
+            "filetypes": [
+              "images"
+            ]
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "image-gallery",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      "after": {
+        "id": 1,
+        "created_at": "",
+        "updated_at": "",
+        "is_root": false,
+        "is_nestable": true,
+        "name": "image-gallery",
+        "color": "#dfe3e8",
+        "description": "A section with multiple images.",
+        "folder": "blocks",
+        "schema": {
+          "images": {
+            "filetypes": [
+              "images"
+            ],
+            "type": "multiasset",
+            "pos": 0
+          }
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "mantel",
+      "action": "update",
+      "before": {
+        "name": "mantel",
+        "display_name": null,
+        "description": "The top of the homepage.",
+        "created_at": "2022-10-20T18:38:36.814Z",
+        "updated_at": "2026-09-20T17:48:35.459Z",
+        "id": 3024601,
+        "schema": {
+          "headline": {
+            "type": "text",
+            "required": true,
+            "description": "Large text displayed in the mantel."
+          },
+          "copy": {
+            "type": "textarea",
+            "description": "Optional, smaller text that displays under the headline."
+          },
+          "image": {
+            "type": "asset",
+            "filetypes": [
+              "images"
+            ],
+            "description": "Optional image to use as background for the mantel."
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "mantel",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      "after": {
+        "id": 1,
+        "created_at": "",
+        "updated_at": "",
+        "is_root": false,
+        "is_nestable": true,
+        "name": "mantel",
+        "color": "#dfe3e8",
+        "description": "The top of the homepage.",
+        "folder": "blocks",
+        "schema": {
+          "headline": {
+            "description": "Large text displayed in the mantel.",
+            "required": true,
+            "type": "text",
+            "pos": 0
+          },
+          "copy": {
+            "description": "Optional, smaller text that displays under the headline.",
+            "type": "textarea",
+            "pos": 1
+          },
+          "image": {
+            "description": "Optional image to use as background for the mantel.",
+            "filetypes": [
+              "images"
+            ],
+            "type": "asset",
+            "pos": 2
+          }
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "newsletter-signup",
+      "action": "update",
+      "before": {
+        "name": "newsletter-signup",
+        "display_name": null,
+        "description": "Content for the newsletter form.",
+        "created_at": "2022-10-20T18:49:53.802Z",
+        "updated_at": "2026-09-20T17:49:01.008Z",
+        "id": 3024612,
+        "schema": {
+          "headline": {
+            "type": "text",
+            "description": "Large text displayed at the top of the section.",
+            "required": true
+          },
+          "copy": {
+            "type": "textarea",
+            "description": "Optional small text displayed under the headline."
+          },
+          "image": {
+            "type": "asset",
+            "filetypes": [
+              "images"
+            ],
+            "description": "Optional image to use as background for the section."
+          }
+        },
+        "image": null,
+        "preview_field": null,
+        "is_root": false,
+        "preview_tmpl": null,
+        "is_nestable": true,
+        "all_presets": [],
+        "preset_id": null,
+        "real_name": "newsletter-signup",
+        "component_group_uuid": "b960e0f9-f22f-4b42-890d-9658b148d049",
+        "color": "#dfe3e8",
+        "icon": "",
+        "internal_tags_list": [],
+        "internal_tag_ids": [],
+        "content_type_asset_preview": null,
+        "metadata": {}
+      },
+      "after": {
+        "id": 1,
+        "created_at": "",
+        "updated_at": "",
+        "is_root": false,
+        "is_nestable": true,
+        "name": "newsletter-signup",
+        "color": "#dfe3e8",
+        "description": "Content for the newsletter form.",
+        "folder": "blocks",
+        "schema": {
+          "headline": {
+            "description": "Large text displayed at the top of the section.",
+            "required": true,
+            "type": "text",
+            "pos": 0
+          },
+          "copy": {
+            "description": "Optional small text displayed under the headline.",
+            "type": "textarea",
+            "pos": 1
+          },
+          "image": {
+            "description": "Optional image to use as background for the section.",
+            "filetypes": [
+              "images"
+            ],
+            "type": "asset",
+            "pos": 2
+          }
+        }
+      }
+    }
+  ]
+}

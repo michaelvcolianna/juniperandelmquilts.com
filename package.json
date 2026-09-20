@@ -17,10 +17,10 @@
 		"format": "prettier --write .",
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run",
-		"schema:validate": "storyblok schema validate src/lib/storyblok/schema.ts",
-		"schema:diff": "storyblok schema diff --from 159199 --to src/lib/storyblok/schema.ts",
-		"schema:push:dry": "storyblok schema push src/lib/storyblok/schema.ts --space 159199 --dry-run",
-		"schema:push": "storyblok schema push src/lib/storyblok/schema.ts --space 159199",
+		"schema:validate": "storyblok schema validate .storyblok/schema/schema.ts",
+		"schema:diff": "storyblok schema diff --from 159199 --to .storyblok/schema/schema.ts",
+		"schema:push:dry": "storyblok schema push .storyblok/schema/schema.ts --space 159199 --dry-run",
+		"schema:push": "storyblok schema push .storyblok/schema/schema.ts --space 159199",
 		"schema:rollback": "storyblok schema rollback"
 	},
 	"dependencies": {

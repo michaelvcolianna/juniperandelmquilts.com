@@ -1,0 +1,69 @@
+{
+  "id": 1,
+  "created_at": "",
+  "updated_at": "",
+  "is_root": false,
+  "is_nestable": true,
+  "name": "blog-post",
+  "color": "#dfe3e8",
+  "description": "Used to create posts under the Blog directory.",
+  "schema": {
+    "body": {
+      "description": "The blog post content.",
+      "required": true,
+      "type": "richtext",
+      "pos": 0
+    },
+    "excerpt": {
+      "description": "An optional short blurb about the blog post's contents. Displays in the blog listing and below the blog post title, if present.",
+      "type": "textarea",
+      "pos": 1
+    },
+    "hero": {
+      "description": "An optional image displayed when the post is featured, in the blog listing, and in the post itself.",
+      "filetypes": [
+        "images"
+      ],
+      "required": false,
+      "type": "asset",
+      "pos": 2
+    },
+    "show_hero": {
+      "default_value": "yes",
+      "description": "Whether to show the hero between the title and content.",
+      "options": [
+        {
+          "_uid": "6e141c17-bf0f-4b3c-9544-ea51bec32bed",
+          "name": "Yes",
+          "value": "yes"
+        },
+        {
+          "_uid": "7dd30ecf-bfc9-4f2e-a6ef-22ee4744dde9",
+          "name": "No",
+          "value": "no"
+        }
+      ],
+      "type": "option",
+      "use_uuid": true,
+      "pos": 3
+    },
+    "tab-78e9879a-a9c9-4251-99c8-7e22bea952c3": {
+      "display_name": "Content",
+      "keys": [
+        "body"
+      ],
+      "type": "tab",
+      "pos": 4
+    },
+    "tab-cbff14a4-ab3a-4826-90d1-e04a80467c6a": {
+      "display_name": "Config",
+      "keys": [
+        "show_hero",
+        "hero",
+        "excerpt"
+      ],
+      "type": "tab",
+      "pos": 5
+    }
+  }
+}

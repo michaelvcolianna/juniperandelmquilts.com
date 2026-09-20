@@ -48,7 +48,26 @@
 				the "opens in a new window" description in the layout.
 			-->
 			<ExternalLink href={link.href} nofollow={false}>
-				{link.label}<span class="external-mark" aria-hidden="true">↗</span>
+				{link.label}
+				<!--
+					Drawn rather than typed. U+2197 is absent from Inter, so mobile Safari
+					and Android fall back to the colour emoji font and the arrow renders as
+					an emoji. A variation selector does not help when the fallback font is
+					the emoji font itself.
+				-->
+				<svg
+					class="external-mark"
+					aria-hidden="true"
+					viewBox="0 0 10 10"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M2 8 8 2" />
+					<path d="M3.6 2H8V6.4" />
+				</svg>
 			</ExternalLink>
 		{:else}
 			<!-- These hrefs come from resolve() in the links array above; the rule
@@ -94,10 +113,14 @@
 
 	/* Signals that the link leaves the site, alongside the screen-reader hint. */
 	.external-mark {
+		/* Sized in em so it tracks the link's font size at every breakpoint. */
+		width: 0.78em;
+		height: 0.78em;
 		margin-inline-start: 0.2em;
-		font-size: 0.7em;
-		/* Optical alignment: the glyph sits high in its box. */
-		transform: translateY(-0.15em);
+		flex: none;
+		align-self: center;
+		/* A slight lift, roughly matching where the old text glyph sat. */
+		margin-block-start: -0.12em;
 	}
 
 	.in-footer {

@@ -1,0 +1,41 @@
+{
+  "id": 1,
+  "created_at": "",
+  "updated_at": "",
+  "is_root": false,
+  "is_nestable": true,
+  "name": "featured-items",
+  "color": "#dfe3e8",
+  "description": "A section to point out images or blog posts.",
+  "schema": {
+    "headline": {
+      "description": "Large text displayed at the top of the section.",
+      "required": true,
+      "type": "text",
+      "pos": 0
+    },
+    "copy": {
+      "description": "Optional small text displayed under the headline.",
+      "type": "richtext",
+      "pos": 1
+    },
+    "items": {
+      "filter_content_type": [
+        "content"
+      ],
+      "description": "Blog posts to feature.",
+      "min_options": "",
+      "source": "internal_stories",
+      "type": "options",
+      "pos": 2
+    },
+    "images": {
+      "description": "Images to feature.",
+      "filetypes": [
+        "images"
+      ],
+      "type": "multiasset",
+      "pos": 3
+    }
+  }
+}
