@@ -13,8 +13,29 @@ import type { Story, StoryblokStory } from './types';
 /** Relations the CMS expects resolved. Carried over from the Nuxt build. */
 export const RESOLVE_RELATIONS = ['featured-items.items'];
 
-const published = new StoryblokClient({ accessToken: STORYBLOK_PUBLIC_TOKEN });
-const draft = new StoryblokClient({ accessToken: STORYBLOK_PREVIEW_TOKEN });
+/*
+ * Caching is switched off deliberately.
+ *
+ * storyblok-js-client defaults to an in-memory cache with `clear: 'manual'`,
+ * which never flushes. That is harmless in a production build — a fresh process
+ * fetches each story exactly once and then exits, so the cache has nothing to
+ * serve — but a dev server is long-lived, so republished content never appears
+ * until the server is restarted.
+ *
+ * The site is fully prerendered, so there are no repeat reads to optimise away.
+ * The cache can only cost correctness here, never buy speed.
+ */
+const CACHE = { type: 'none' } as const;
+
+const published = new StoryblokClient({
+	accessToken: STORYBLOK_PUBLIC_TOKEN,
+	cache: CACHE
+});
+
+const draft = new StoryblokClient({
+	accessToken: STORYBLOK_PREVIEW_TOKEN,
+	cache: CACHE
+});
 
 export type StoryblokVersion = 'published' | 'draft';
 
