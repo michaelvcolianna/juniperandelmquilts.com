@@ -105,14 +105,8 @@ h5,
 h6,
 p,
 figure,
-blockquote,
-fieldset {
+blockquote {
 	margin: 0;
-}
-
-fieldset {
-	padding: 0;
-	border: 0;
 }
 
 h1,
@@ -367,12 +361,6 @@ label {
 	font-size: var(--text-sm);
 	font-weight: 500;
 	margin-block-end: 0.35rem;
-}
-
-legend {
-	font-family: var(--font-heading);
-	font-size: var(--text-h5);
-	margin-block-end: 0.5rem;
 }
 
 /* ---------------------------------------------------------------------------

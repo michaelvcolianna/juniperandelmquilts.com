@@ -102,11 +102,15 @@
 					<input id="bot-field" name="bot-field" type="text" tabindex="-1" autocomplete="off" />
 				</p>
 
-				<fieldset>
-					<legend>Name <span aria-hidden="true">*</span></legend>
-
+				<!--
+					No fieldset: a group label only earns its place when the individual
+					labels are ambiguous alone, as with a set of radio buttons. "First
+					name" and "Last name" already say everything a grouping "Name"
+					would, so this is purely a layout wrapper.
+				-->
+				<div class="contact__names">
 					<div class="contact__field">
-						<label for="first-name">First name</label>
+						<label for="first-name">First name <span aria-hidden="true">*</span></label>
 						<input
 							id="first-name"
 							name="firstName"
@@ -119,7 +123,7 @@
 					</div>
 
 					<div class="contact__field">
-						<label for="last-name">Last name</label>
+						<label for="last-name">Last name <span aria-hidden="true">*</span></label>
 						<input
 							id="last-name"
 							name="lastName"
@@ -130,7 +134,7 @@
 							spellcheck="false"
 						/>
 					</div>
-				</fieldset>
+				</div>
 
 				<div class="contact__field">
 					<label for="email">Email <span aria-hidden="true">*</span></label>
@@ -195,7 +199,7 @@
 		gap: 1.25rem;
 	}
 
-	fieldset {
+	.contact__names {
 		display: grid;
 		gap: 1rem;
 	}
@@ -257,12 +261,8 @@
 			column-gap: var(--gutter);
 		}
 
-		fieldset {
+		.contact__names {
 			grid-template-columns: 1fr 1fr;
-		}
-
-		fieldset legend {
-			grid-column: 1 / -1;
 		}
 	}
 </style>
