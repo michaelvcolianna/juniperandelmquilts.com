@@ -62,8 +62,8 @@
 								<StoryblokImage
 									{image}
 									decorative
-									aspectRatio={4 / 5}
-									sizes="(min-width: 768px) 33vw, 100vw"
+									aspectRatio={1}
+									sizes="(min-width: 64em) 33vw, (min-width: 48em) 45vw, 100vw"
 								/>
 							</a>
 
@@ -138,6 +138,17 @@
 	.card__image :global(img) {
 		width: 100%;
 		border: 1px solid var(--seam);
+		/*
+		 * Shorter through mobile and tablet — full width, trimmed from the centre
+		 * — because a tall crop at full bleed pushes the next card off screen.
+		 *
+		 * The CDN delivers the square that desktop uses, which is the taller of
+		 * the two shapes, so this crops what is already downloaded rather than
+		 * fetching a second variant.
+		 */
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
+		object-position: center;
 	}
 
 	.featured-items__images :global(img) {
@@ -172,6 +183,13 @@
 	/* -----------------------------------------------------------------------
 	 * Featured product
 	 * -------------------------------------------------------------------- */
+
+	@media (min-width: 64em) {
+		/* Square once there is room for three columns. */
+		.card__image :global(img) {
+			aspect-ratio: 1;
+		}
+	}
 
 	@media (min-width: 48em) {
 		/* Cards sit side by side from tablet up. */

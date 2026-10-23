@@ -42,8 +42,8 @@
 							<StoryblokImage
 								{image}
 								decorative
-								aspectRatio={340 / 450}
-								sizes="(min-width: 768px) 50vw, 100vw"
+								aspectRatio={1}
+								sizes="(min-width: 64em) 33vw, (min-width: 48em) 50vw, 100vw"
 							/>
 						</a>
 					{/if}
@@ -104,6 +104,15 @@
 	.blog-list article :global(img) {
 		width: 100%;
 		border: 1px solid var(--seam);
+		/*
+		 * Matches the featured cards on the home page: shorter through mobile and
+		 * tablet, trimmed from the centre, so a tall crop does not push the next
+		 * post off screen. The CDN serves the square the desktop grid uses, which
+		 * is the taller of the two shapes.
+		 */
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
+		object-position: center;
 	}
 
 	.blog-list h2 {
@@ -163,6 +172,13 @@
 	.pagination p {
 		font-size: var(--text-sm);
 		color: var(--muted);
+	}
+
+	@media (min-width: 64em) {
+		/* Square once the grid has room for multiple columns. */
+		.blog-list article :global(img) {
+			aspect-ratio: 1;
+		}
 	}
 
 	@media (min-width: 48em) {
